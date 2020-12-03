@@ -11,13 +11,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoAdminRestaurantController extends AbstractController
 {
     /**
-     * @Route("/restaurant", name="no_admin_restaurant.index")
+     * @Route("/restaurant", name="home")
      */
     public function index(RestaurantRepository $repo): Response
     {
         $restaurants = $repo->findAll();
         return $this->render('no_admin_restaurant/index.html.twig', [
             'restaurants' => $restaurants,
+        ]);
+    }
+
+    /**
+     * @Route("/restaurant/{id}", name="restaurant.show")
+     */
+    public function showOne(Restaurant $restaurant): Response
+    {
+        return $this->render('no_admin_restaurant/restaurant.html.twig', [
+            'restaurant'=>$restaurant,
         ]);
     }
 }

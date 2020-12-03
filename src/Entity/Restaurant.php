@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestaurantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,16 @@ class Restaurant
      * @ORM\Column(type="float")
      */
     private $balance;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Plat::class, mappedBy="restaurants")
+     */
+    private $plats;
+
+    public function __construct()
+    {
+        $this->plats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +183,36 @@ class Restaurant
     public function setBalance(float $balance): self
     {
         $this->balance = $balance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Plat[]
+     */
+    public function getPlats(): Collection
+    {
+        return $this->plats;
+    }
+
+    public function addPlat(Plat $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats[] = $plat;
+            $plat->setRestaurants($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Plat $plat): self
+    {
+        if ($this->plats->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getRestaurants() === $this) {
+                $plat->setRestaurants(null);
+            }
+        }
 
         return $this;
     }
