@@ -19,6 +19,15 @@ class PlatRepository extends ServiceEntityRepository
         parent::__construct($registry, Plat::class);
     }
 
+    public function getByID(int $id)
+    {
+        return $this->createQueryBuilder('p')
+            ->Where('p.restaurants = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Plat[] Returns an array of Plat objects
     //  */

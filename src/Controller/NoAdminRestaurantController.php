@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,10 +25,12 @@ class NoAdminRestaurantController extends AbstractController
     /**
      * @Route("/restaurant/{id}", name="restaurant.show")
      */
-    public function showOne(Restaurant $restaurant): Response
+    public function showOne(Restaurant $restaurant,PlatRepository $repoPlat): Response
     {
+        $plats = $repoPlat->getByID($restaurant->getId());
         return $this->render('no_admin_restaurant/restaurant.html.twig', [
             'restaurant'=>$restaurant,
+            'plats' => $plats,
         ]);
     }
 }
