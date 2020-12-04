@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NoAdminRestaurantController!{% endblock %}
+
+{% block body %}
+<div class="container">
+{% for restaurant in restaurants %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{restaurant.logo}}" class="card-img" alt="img">
+            </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.name }}</h5>
+                            <a class="btn btn-primary" href="{{ path('restaurant.show', {id: restaurant.id}) }}" role="button">En savoir plus</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
