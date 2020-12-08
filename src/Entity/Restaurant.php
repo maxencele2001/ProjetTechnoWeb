@@ -69,9 +69,15 @@ class Restaurant
      */
     private $plats;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="restaurants")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
+        //$this->user =   
     }
 
     public function getId(): ?int
@@ -213,6 +219,18 @@ class Restaurant
                 $plat->setRestaurants(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

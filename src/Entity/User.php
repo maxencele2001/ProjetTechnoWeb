@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -63,6 +65,16 @@ class User implements UserInterface
      * @ORM\Column(type="float")
      */
     private $balance;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="user")
+     */
+    private $restaurants;
+
+    public function __construct()
+    {
+        $this->restaurants = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -210,6 +222,36 @@ class User implements UserInterface
     public function setBalance(float $balance): self
     {
         $this->balance = $balance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurants(): Collection
+    {
+        return $this->restaurants;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurants->contains($restaurant)) {
+            $this->restaurants[] = $restaurant;
+            $restaurant->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurants->removeElement($restaurant)) {
+            // set the owning side to null (unless already changed)
+            if ($restaurant->getUser() === $this) {
+                $restaurant->setUser(null);
+            }
+        }
 
         return $this;
     }
