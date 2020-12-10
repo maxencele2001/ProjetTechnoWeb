@@ -1,0 +1,23 @@
+figcaption {
+    background-image: url('https://i.pinimg.com/originals/ab/8a/fc/ab8afc7ef92d0bcdcafaac220c62c194.png');
+    background-size: cover;
+}
+.section {
+    position: relative;
+    height: 100vh;
+}
+
+.home-cta h1 {
+    font-size: 25x;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+}
+
+.login {
+    font-size: 25x;
+    text-transform: uppercase;
+    color: rgb(206, 141, 0);
+    font-weight: 700;
+}
+
