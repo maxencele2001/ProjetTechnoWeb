@@ -15,5 +15,24 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Promos</a>
       </li>
+      {% if app.user %}
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{{ path('app_logout') }}" class="nav-link">Se déconnecter</a>
+            </li>
+        </ul>
+      {% else %}
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{{ path('app_register') }}" class="nav-link">S'inscrire</a>
+            </li>
+        </ul>      
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{{ path('app_login') }}" class="nav-link">Se connecter</a>
+            </li>
+        </ul>
+
+      {% endif %}
   </div>
 </nav>

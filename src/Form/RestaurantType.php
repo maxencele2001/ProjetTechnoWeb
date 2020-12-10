@@ -19,7 +19,7 @@ class RestaurantType extends AbstractType
             ->add('postal_code')
             ->add('city')
             ->add('email')
-            ->add('type')
+            //->add('type')
             ->add('balance')
         ;
     }
