@@ -32,7 +32,7 @@
                 <td>{{ restaurant.postalCode }}</td>
                 <td>{{ restaurant.city }}</td>
                 <td>{{ restaurant.email }}</td>
-                <td>{{ restaurant.type }}</td>
+                <td>{{ restaurant.type.name }}</td>
                 <td>{{ restaurant.balance }}</td>
                 <td>
                     <a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">show</a>

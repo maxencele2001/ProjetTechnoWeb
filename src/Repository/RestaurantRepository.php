@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Restaurant;
+use App\Entity\Type;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,15 @@ class RestaurantRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Restaurant::class);
+    }
+
+    public function getByType(Type $type)
+    {
+        return $this->createQueryBuilder('r')
+        ->where('r.type = :type')
+        ->setParameter('type', $type)
+        ->getQuery()
+        ->getResult();
     }
 
     // /**

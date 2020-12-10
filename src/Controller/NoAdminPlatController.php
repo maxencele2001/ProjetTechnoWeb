@@ -11,18 +11,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoAdminPlatController extends AbstractController
 {
     /**
-     * @Route("/plat", name="plat")
+     * @Route("/plats", name="plat")
      */
     public function index(PlatRepository $repo): Response
     {
         $plats = $repo->findAll();
-        return $this->render('plat/index.html.twig', [
+        return $this->render('no_admin_plat/index.html.twig', [
             'plats' => $plats,
         ]);
     }
 
+    /**
+     * @Route("/plats/{id}", name="plat")
+     */
     public function showOne(Plat $plat)
     {
-        
+        return $this->render('no_admin_plat/index.html.twig', [
+            'plat' => $plat,
+        ]);
     }
 }

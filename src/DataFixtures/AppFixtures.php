@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Plat;
 use App\Entity\Restaurant;
+use App\Entity\Type;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -24,6 +25,9 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         $restaurants = [];
         $maxIndex = self::MAX_INDEX-1;
+        $type = new Type();
+        $type->setName('Chinois');
+        $manager->persist($type);
         
 
         for($i=0;$i<25;$i++){
@@ -36,7 +40,7 @@ class AppFixtures extends Fixture
                 ->setPostalCode('69000')
                 ->setCity('Lyon')
                 ->setEmail('maxence.crosse@ynov.com')
-                //->setType('Chinois')
+                ->setType($type)
                 ->setBalance(500);
             $manager->persist($restaurant);
             $restaurants[] = $restaurant;
