@@ -77,7 +77,6 @@ class Restaurant
     public function __construct()
     {
         $this->plats = new ArrayCollection();
-        //$this->user =   
     }
 
     public function getId(): ?int
