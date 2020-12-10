@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
                 ->setPostalCode('69000')
                 ->setCity('Lyon')
                 ->setEmail('maxence.crosse@ynov.com')
-                ->setType('Chinois')
+                //->setType('Chinois')
                 ->setBalance(500);
             $manager->persist($restaurant);
             $restaurants[] = $restaurant;
