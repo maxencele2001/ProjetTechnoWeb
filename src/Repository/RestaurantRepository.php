@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Restaurant;
 use App\Entity\Type;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -25,6 +26,15 @@ class RestaurantRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('r')
         ->where('r.type = :type')
         ->setParameter('type', $type)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function getByIdUser(User $user)
+    {
+        return $this->createQueryBuilder('r')
+        ->where('r.user = :user')
+        ->setParameter('user', $user)
         ->getQuery()
         ->getResult();
     }
