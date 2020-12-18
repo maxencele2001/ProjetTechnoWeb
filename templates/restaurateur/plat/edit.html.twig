@@ -7,7 +7,7 @@
 
     {{ include('restaurateur/plat/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('restaurateur.plat.all', {'id': idRestaurant})) }">back to list</a>
+    <a href="{{ path('restaurateur.plat.all', {'id': idRestaurant}) }}">back to list</a>
 
     {{ include('restaurateur/plat/_delete_form.html.twig') }}
 {% endblock %}

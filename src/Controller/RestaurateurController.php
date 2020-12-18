@@ -36,7 +36,7 @@ class RestaurateurController extends AbstractController
     }
 
     /**
-     * @Route("/myrestaurants/{id}", name="restaurateur.restaurant.one", methods={"GET"})
+     * @Route("/myrestaurants/{id}", name="restaurateur.restaurant.one", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function oneRestaurant(Restaurant $restaurant)//rajouter un if ou genre on verif si ce resto appartient bien au user
     {
@@ -48,11 +48,10 @@ class RestaurateurController extends AbstractController
     #-----------------CRUD--------------#
 
     /**
-     * @Route("myrestaurants/new", name="restaurateur.restaurant.new", methods={"GET","POST"})
+     * @Route("/myrestaurants/new", name="restaurateur.restaurant.new", methods={"GET","POST"})
      */
-    public function newRestaurant(Request $request, EntityManagerInterface $em, Restaurant $Restaurant): Response
+    public function newRestaurant(Request $request, EntityManagerInterface $em): Response
     {
-        $idRestaurant = $Restaurant->getId();
         $restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
@@ -73,22 +72,20 @@ class RestaurateurController extends AbstractController
             $em->persist($restaurant);
             $em->flush();
         
-            return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);
+            return $this->redirectToRoute('restaurateur.restaurant.all');
         }
 
         return $this->render('restaurateur/restaurant/new.html.twig', [
             'restaurant' => $restaurant,
             'form' => $form->createView(),
-            'idRestaurant' => $idRestaurant
         ]);
     }
 
     /**
-     * @Route("myrestaurants/{id}/edit", name="restaurateur.restaurant.edit", methods={"GET","POST"})
+     * @Route("/myrestaurants/{id}/edit", name="restaurateur.restaurant.edit", methods={"GET","POST"})
      */
     public function editRestaurant(Request $request, Restaurant $restaurant, EntityManagerInterface $em): Response
     {
-        $idRestaurant = $restaurant->getId();
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
 
@@ -106,29 +103,27 @@ class RestaurateurController extends AbstractController
             $em->persist($restaurant);
             $em->flush();
 
-            return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);
+            return $this->redirectToRoute('restaurateur.restaurant.all');
         }
 
         return $this->render('restaurateur/restaurant/edit.html.twig', [
             'restaurant' => $restaurant,
             'form' => $form->createView(),
-            'idRestaurant' => $idRestaurant
         ]);
     }
 
     /**
-     * @Route("myrestaurants/{id}", name="restaurateur.restaurant.delete", methods={"DELETE"})
+     * @Route("/myrestaurants/{id}", name="restaurateur.restaurant.delete", methods={"DELETE"})
      */
     public function deleteRestaurant(Request $request, Restaurant $restaurant): Response
     {
-        $idRestaurant = $restaurant->getId();
         if ($this->isCsrfTokenValid('delete'.$restaurant->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($restaurant);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);
+        return $this->redirectToRoute('restaurateur.restaurant.all');
     }
 
     ###############################PLAT#################################################
@@ -199,6 +194,7 @@ class RestaurateurController extends AbstractController
     public function editPlat(Request $request, Restaurant $restaurant, Plat $plat,EntityManagerInterface $em): Response
     {
         $idRestaurant = $restaurant->getId();
+        $idPlat = $plat->getId();
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
 
@@ -222,12 +218,13 @@ class RestaurateurController extends AbstractController
         return $this->render('restaurateur/plat/edit.html.twig', [
             'plat' => $plat,
             'form' => $form->createView(),
-            'idRestaurant' => $idRestaurant
+            'idRestaurant' => $idRestaurant,
+            'idPlat' => $idPlat
         ]);
     }
 
     /**
-     * @Route("myrestaurants/{restaurant}/plats/{plat}", name="restaurateur.plat.delete", methods={"DELETE"})
+     * @Route("/myrestaurants/{restaurant}/plats/{plat}", name="restaurateur.plat.delete", methods={"DELETE"})
      */
     public function deletePlat(Request $request,Restaurant $restaurant, Plat $plat): Response
     {
