@@ -41,15 +41,15 @@ figcaption {
     background-color: #fff;
     border-radius: 10px;
     border-color:transparent;
-    height: 50px;
-    width: 400px;
+    height: 60px;
+    width: 500px;
 }
 .btn-search {
     background-color: rgb(3, 28, 110);
     border-radius: 50px;
     border-color:transparent;
-    height: 50px;
-    width: 55px;
+    height: 60px;
+    width: 60px;
     margin-left: 0.5em;
 }
 svg {
