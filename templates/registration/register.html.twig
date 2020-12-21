@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+<container>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email,  {
+            label: 'Email','attr':{'class': 'form-control','placeholder' :'Votre Email'}
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password','attr':{'class': 'form-control','placeholder' :'Entrez votre Password'}
+        }) }}
+        {{ form_row(registrationForm.name, {
+            label: 'Nom','attr':{'class': 'form-control','placeholder' :'Nom'}
+        }) }}
+        {{ form_row(registrationForm.firstName, {
+            label: 'Prénom','attr':{'class': 'form-control','placeholder' :'Prénom'}
+        }) }}
+        {{ form_row(registrationForm.address, {
+            label: 'Adresse','attr':{'class': 'form-control','placeholder' :'Votre Adresse'}
+        }) }}
+        {{ form_row(registrationForm.postal_code, { 
+            label: 'Code Postal',
+             'attr':{'class': 'form-control','placeholder' :'Code Postal','type':'number',  'maxlength': '5'  }
+        }) }}
+        {{ form_row(registrationForm.city, {
+            label: 'Ville','attr':{'class': 'form-control','placeholder' :'Votre ville'}
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">S'enregistrer</button>
+    {{ form_end(registrationForm) }}
+</container>
+{% endblock %}
