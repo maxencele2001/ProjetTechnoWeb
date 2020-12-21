@@ -156,7 +156,7 @@ class RestaurateurController extends AbstractController
      * @Route("/myrestaurants/{restaurant}/plats/newplat", name="restaurateur.plat.new", methods={"GET","POST"})
      */
     public function newPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
-    {
+    { 
         $idRestaurant = $restaurant->getId();
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
