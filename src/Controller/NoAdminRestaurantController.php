@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoAdminRestaurantController extends AbstractController
 {
     /**
-     * @Route("/restaurant", name="home")
+     * @Route("/restaurant", name="restaurant")
      */
     public function index(RestaurantRepository $repo): Response
     {

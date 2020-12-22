@@ -1,16 +1,18 @@
 .login-illustration {
     height: 100%;
-  }
-  img {
-    width: 80%;
-  }
-  .login-welcome-message {
-    font-size: 13px;
-    line-height: 2;
-  }
-  .btn {
-      background-color: rgb(3, 28, 110);
-      color: #fff;
-
-  }
-  
+}
+img {
+   width: 80%;
+}
+.login-welcome-message {
+  font-size: 13px;
+  line-height: 2;
+}
+.btn, .navbar-brand,.nav-link {
+  background-color: rgb(20,33,61) ;
+  color: rgb(229,229,229) ;
+}
+nav {
+  background-color: rgb(20,33,61);
+}
+ 

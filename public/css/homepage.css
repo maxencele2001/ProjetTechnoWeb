@@ -12,7 +12,7 @@ figcaption {
     color: #fff;
     font-weight: 700;
     -webkit-text-stroke: 2px;
-    -webkit-text-stroke-color: rgb(3, 28, 110);
+    -webkit-text-stroke-color: rgb(20,33,61) ;
 }
 
 .arrondi {
@@ -25,7 +25,7 @@ figcaption {
     margin-top: 1em;
 }
 a {
-    color: rgb(3, 28, 110);
+    color: rgb(20,33,61) ;
 }
 
 .recherche {
@@ -38,7 +38,7 @@ a {
       justify-content: center;
 }
 .search {
-    color: rgb(3, 28, 110);
+    color: rgb(20,33,61) ;
     font-size: 25x;
     font-weight: 700;
     background-color: #fff;
@@ -48,7 +48,7 @@ a {
     width: 500px;
 }
 .btn-search {
-    background-color: rgb(3, 28, 110);
+    background-color:rgb(20,33,61) ;
     border-radius: 50px;
     border-color:transparent;
     height: 60px;
