@@ -1,5 +1,5 @@
 figcaption {
-    background-image: url('https://i.pinimg.com/originals/ab/8a/fc/ab8afc7ef92d0bcdcafaac220c62c194.png');
+    background-image: url('../img/accueil.png');
     background-size: cover;
     padding: 1em;
     position: relative;
@@ -16,13 +16,16 @@ figcaption {
 }
 
 .arrondi {
-    color: rgb(3, 28, 110);
+    
     font-size: 25x;
     font-weight: 700;
     background-color: #fff;
     border-radius: 10px;
     border-color:transparent;
     margin-top: 1em;
+}
+a {
+    color: rgb(3, 28, 110);
 }
 
 .recherche {
