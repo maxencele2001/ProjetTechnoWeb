@@ -1,3 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+
+{% block body %}
+<div class="container">
+{% for plat in plats %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{plat.image}}" class="card-img" alt="img">
+            </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plat.name }}</h5>
+                            <a class="btn btn-primary" href="{{ path('plat.show', {id: plat.id}) }}" role="button">En savoir plus</a>
+                            <a class="btn btn-success" href="{{ path('cart.add', {id: plat.id}) }}" role="button">Ajouter au panier</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+
 <pre>
     {{ dump(restaurant) }}
 </pre>
@@ -5,3 +32,5 @@
 <pre>
     {{ dump(plats) }}
 </pre>
+
+{% endblock %}

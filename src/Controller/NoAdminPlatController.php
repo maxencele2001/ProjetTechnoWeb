@@ -22,7 +22,7 @@ class NoAdminPlatController extends AbstractController
     }
 
     /**
-     * @Route("/plats/{id}", name="plat")
+     * @Route("/plats/{id}", name="plat.show")
      */
     public function showOne(Plat $plat)
     {
