@@ -8,11 +8,9 @@ img {
   font-size: 13px;
   line-height: 2;
 }
-.btn, .navbar-brand,.nav-link {
+.btn {
   background-color: rgb(20,33,61) ;
   color: rgb(229,229,229) ;
 }
-nav {
-  background-color: rgb(20,33,61);
-}
+
  
