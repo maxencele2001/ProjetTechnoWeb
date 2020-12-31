@@ -1,8 +1,12 @@
+.nav-link, .navbar-brand {
+    color : white;
+}  
+
 body {
     font-family: "lato", sans-serif;
   }
   
-  .container {
+  .contai {
     max-width: 1000px;
     
     padding-left: 10px;
@@ -42,9 +46,7 @@ body {
   .responsive-table .col-5 {
     flex-basis: 22.5%;
   }
-  .nav-link, .navbar-brand {
-    color : white;
-  }
+
   svg {
     color:rgb(20,33,61);
   }
