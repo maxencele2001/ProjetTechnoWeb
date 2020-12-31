@@ -17,6 +17,7 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-12">
+
             <div class="d-flex justify-content-between">
                 <h1>Liste des Plats</h1>
                 <button class="btn" style="background-color: rgb(20,33,61);">
@@ -90,93 +91,5 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{# <div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="d-flex justify-content-between">
-                <h1>Plats</h1>
-                <button class="btn" style="background-color: rgb(20,33,61);">
-                    <a href="{{ path('plat_new') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" style="color:white;">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        </svg>
-                    </a>
-                </button>
-            </div>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Tableau de bords</a></li>
-                <li class="breadcrumb-item active">Liste des Plats</li>
-            </ol>
-            </div>
-            
-            <div class="col-12">
-            <div class="cart">
-                <div class="contain">
-                    <ul class="responsive-table">
-                        <li class="table-header">
-                        <div class="col col-1">Id</div>
-                        <div class="col col-2">Name</div>
-                        <div class="col col-3">Price</div>
-                        <div class="col col-4">Image</div>
-                        <div class="col col-5">More</div>
-                        </li>
-                        {% for plat in plats %}
-                        <li class="table-row">
-                        <div class="col col-1" data-label="Id">{{ plat.id }}</div>
-                        <div class="col col-2" data-label="Name">{{ plat.name }}</div>
-                        <div class="col col-3" data-label="Price">{{ plat.price }} €</div>
-                        <div class="col col-4" data-label="Image">{{ plat.image }}</div>
-                        <div class="col col-5 d-flex" data-label="More">
-                            <button class="btn">
-                                <a href="{{ path('plat_show', {'id': plat.id}) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                                    </svg>
-                                </a>
-                            </button>
-                            <button class="btn">
-                                <a href="{{ path('plat_edit', {'id': plat.id}) }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                    </svg>
-                                </a>
-                            </button>
-                            {{ include('plat/_delete_form.html.twig') }}
-                        </div>
-                        </li>
-                        {% else %}
-                            <li class="table-row">
-                                <div class="col col-2" data-label="Info">No records found</div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-        </div>
-    </div>
-</div> #}
     
 {% endblock %}
