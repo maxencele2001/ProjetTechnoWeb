@@ -1,3 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
     <link
@@ -6,18 +10,45 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/restaurantShow.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/admin/adminShowRestaurant.css') }}" />
 {% endblock %}
 
-<pre>
-    {{ dump(restaurant) }}
-</pre>
+{% block body %}
+<header>{% include "adminNav.html.twig" %}</header>
 
-<pre>
-    {{ dump(plats) }}
-</pre>
+<div class="container pt-5">
+    <div class="row">   
 
-<div class="container">
+        <div class="col-12">
+            <div class="row no-gutters">
+
+                <div class="d-flex">
+                    <img src="{{ asset('uploads/' ~ restaurant.logo) }}" alt="Illustration of {{restaurant.name}}" class='profil'/>
+                    <div class="info">
+                        <h1 class="card-title">{{restaurant.name}}</h1>
+                        <p style="text-align: justify;">{{ restaurant.address }}  {{ restaurant.postalCode }},  {{ restaurant.city }}</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h3 class="card-title">Description : </h3>
+                        <p style="text-align: justify;">{{restaurant.description}}</p>
+                                               
+                    </div>
+                </div>
+
+
+            </div> 
+        </div>    
+          
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{# <div class="container">
   <div class="overlay">
     <div class = "items"></div>
     <div class = "items head">
@@ -32,4 +63,4 @@
       <span>Ajouter au panier</span>
   </div>
 </div>
-</div>
+</div> #}

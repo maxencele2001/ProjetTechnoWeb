@@ -28,7 +28,7 @@
             </div>
             
             <div class="col-12">
-            <div class="row no-gutters">
+                <div class="row no-gutters">
                     <div class="d-flex">
                         <img src="{{ asset('uploads/' ~ restaurant.logo) }}" alt="Illustration of {{restaurant.name}}" class='profil'/>
                         <div class="info">
@@ -51,67 +51,23 @@
                                 </div>
                             </div>
                             <div class="d-flex">
-                                    <button class="btn btn-sm">
+                                    <button class="btn" style="background-color: rgb(20,33,61) ;">
                                             <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16" style="color:white;">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                 </svg>
                                             </a>
                                         </button>
                                 {{ include('restaurant/_delete_form.html.twig') }}
-                                </div>                             
+                            </div>                             
+                           
                         </div>
                     </div>
-                </div>  
-              {# <div class="cart">
-              <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ restaurant.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ restaurant.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ restaurant.description }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ restaurant.logo }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ restaurant.address }}</td>
-            </tr>
-            <tr>
-                <th>Postal_code</th>
-                <td>{{ restaurant.postalCode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ restaurant.city }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ restaurant.email }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ restaurant.type }}</td>
-            </tr>
-            <tr>
-                <th>Balance</th>
-                <td>{{ restaurant.balance }}</td>
-            </tr>
-        </tbody>
-    </table> #}
-                 
-              </div>
+                </div> 
+
             </div>
+            
             
         </div>
     </div>

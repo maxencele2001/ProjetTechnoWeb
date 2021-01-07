@@ -1,6 +1,4 @@
-body {
-    background-color: #fef5df;
-  }
+/* 
   
   .container {
     width: 300px;
@@ -101,4 +99,17 @@ body {
     transform: translateY(0px);
     transition-delay: 0.6s;
     opacity: 1;
-  }
+  } */
+
+  .profil {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.nav-link, .nav-itm, .navbar-brand {
+    color : white;
+} 
+.info {
+    margin-left: 10px;
+}

@@ -10,3 +10,7 @@
 .info {
     margin-left: 10px;
 }
+.btn {
+    background-color: rgb(20,33,61) ;
+    margin-right: 0.5em;
+}
