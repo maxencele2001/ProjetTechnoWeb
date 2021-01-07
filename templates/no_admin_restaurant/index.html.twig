@@ -10,27 +10,36 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/restaurantsList.css') }}" />
 {% endblock %}
 
 {% block body %}
 <header>{% include "nav.html.twig" %}</header>
 
-<div class="container">
-{% for restaurant in restaurants %}
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img src="{{restaurant.logo}}" class="card-img" alt="img">
-            </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ restaurant.name }}</h5>
-                            <a class="btn btn-primary" href="{{ path('restaurant.show', {id: restaurant.id}) }}" role="button">En savoir plus</a>
+<main>
+    <div class="container">
+        {% for restaurant in restaurants %}
+        <a class="btn" href="{{ path('restaurant.show', {id: restaurant.id}) }}" role="button">
+
+            
+            <div class="content">
+                <div class="card">
+                    <div class="firstinfo"><img src="{{ asset('uploads/' ~ restaurant.logo) }}"/>
+                      <div class="profileinfo">
+                          <h1>{{ restaurant.name }}</h1>
+                          <h3>{{ restaurant.address }}</h3>
+                          <p class="bio">{{ restaurant.description|striptags|truncate(55, true)|raw }} </p>
+                       </div>
                     </div>
                 </div>
-        </div>
+                <div class="badgescard">
+                  
+                </div>
+            </div>
+        
+        </a>
+
+    {% endfor %}
     </div>
-{% endfor %}
-</div>
+</main>
 {% endblock %}
