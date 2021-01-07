@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Plat;
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +24,9 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="cart.add")
      */
-    public function add($id, CartService $cartService)
+    public function add(Plat $plat, CartService $cartService)
     {
-        $cartService->add($id,$cartService->idResto);
+        $cartService->add($plat);
         return $this->redirectToRoute('cart.index');
     }
 
@@ -36,5 +37,14 @@ class CartController extends AbstractController
     {
         $cartService->remove($id);
         return $this->redirectToRoute('cart.index');
+    }
+
+    /**
+     * @Route("/cart/order", name="cart.order")
+     */
+    public function order(CartService $cartService)
+    {
+        $cartService->order($this->getUser());
+        return new Response('oui');
     }
 }
