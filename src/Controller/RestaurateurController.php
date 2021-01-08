@@ -6,6 +6,7 @@ use App\Entity\Plat;
 use App\Entity\Restaurant;
 use App\Form\PlatType;
 use App\Form\RestaurantType;
+use App\Repository\OrderRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +22,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestaurateurController extends AbstractController
 {
     #Pourquoi pas une page home "/" pour afficher ses stats 
+
+    /**
+     * @Route("/", name="restaurateur.dashboard", methods={"GET"})
+     */
+    public function dashboard(RestaurantRepository $repo, OrderRepository $orderRepo)
+    {
+        $restaurants = $repo->getByIdUser($this->getUser());
+        $nbResto = count($restaurants);
+        foreach ($restaurants as $restaurant){
+            $resto = $repo->find($restaurant);
+            $id = $resto->getId();
+            $nbOrder = $orderRepo->findBy(
+                ['restaurant' => 24.47]
+            );
+            $nbOrder = count($nbOrder);
+        }
+
+        return $this->render('restaurateur/index.html.twig', [
+            'nbResto' => $nbResto,
+            'nbOrder' => $nbOrder
+        ]); 
+    }
 
     ##################### Restaurant #############################
 
