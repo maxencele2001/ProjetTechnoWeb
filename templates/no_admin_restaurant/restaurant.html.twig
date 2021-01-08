@@ -60,8 +60,10 @@
               <form action="" >
                 <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
                 <h4>Ajouter au panier</h4>
-                <button class="btn"  href="{{ path('home') }}" ></button>
-                
+                <button class="btn">
+                <a href="{{ path('home') }}"></a>
+                Ajouter {{plat.price}}</button>
+                {# voir bouton de la modal #}
               </form>
             </div>
         </label>
