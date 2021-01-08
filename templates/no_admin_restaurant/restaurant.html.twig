@@ -16,6 +16,7 @@
 {% block body %}
 <header>{% include "adminNav.html.twig" %}</header>
 
+
 <div class="container pt-5">
     <div class="row">   
 
@@ -42,25 +43,28 @@
 
         <div class="">
         {% for plat in plats %}
-          <div class="center">
-            <div class="property-card">
-              <a href="#">
-                <div class="property-image">
-                  <div class="property-image-title">
-                    
-                  </div>
-                </div></a>
-              <div class="property-description">
-                <h5> {{plat.name}}</h5>
-                <p class="price">{{plat.price}}</p>
-              </div>
-              <a href="#">
-                <div class="property-social-icons">
-                  <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
-                </div>
-              </a>
+          <label>
+            <span class="bt">
+                <a class="Lats">
+                    <figure>
+                      <div class="price"><span >{{plat.price}} €</span></div>
+                      <figcaption>
+                        <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
+                                               
+                      </figcaption>
+                    </figure>
+                </a>
+            </span>
+            <input type="checkbox" />
+            <div class="confirm-modal">
+              <form action="" >
+                <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
+                <h4>Ajouter au panier</h4>
+                <button class="btn"  href="{{ path('home') }}" ></button>
+                
+              </form>
             </div>
-          </div>
+        </label>
 
         {% endfor %}
         </div>   
