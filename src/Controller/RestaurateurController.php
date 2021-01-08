@@ -30,7 +30,6 @@ class RestaurateurController extends AbstractController
     public function dashboard(RestaurantRepository $repo, OrderRepository $orderRepo)
     {
         $restaurants = $repo->getByIdUser($this->getUser());
-        $nbResto = count($restaurants);
         $orderEncours = [];
         $orderLivre = [];
         foreach ($restaurants as $restaurant){
@@ -48,7 +47,7 @@ class RestaurateurController extends AbstractController
         }
 
         return $this->render('restaurateur/index.html.twig', [
-            'nbResto' => $nbResto,
+            'restaurants' => $restaurants,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre
         ]); 
