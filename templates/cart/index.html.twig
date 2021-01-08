@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>LE PANIER</h1>
+    </div>
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.plat.name }}</td>
+                    <td>{{ item.plat.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.plat.price * item.quantity }}</td>
+                    <td>
+                        <a href="{{path('cart.remove', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                       
+                    </td>
+                </tr>
+            {% endfor %}
+            <a href="{{path('cart.order')}}" class="btn btn-danger btn-sm">order</a>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total :</td>
+                    <td>{{ total }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+
+    {% endif %}
+</div>
+{% endblock %}

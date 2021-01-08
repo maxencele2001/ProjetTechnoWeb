@@ -74,9 +74,15 @@ class Restaurant
      */
     private $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="restaurant")
+     */
+    private $orders;
+
     public function __construct()
     {
         $this->plats = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -230,6 +236,36 @@ class Restaurant
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getRestaurant() === $this) {
+                $order->setRestaurant(null);
+            }
+        }
 
         return $this;
     }

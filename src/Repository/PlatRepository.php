@@ -22,7 +22,7 @@ class PlatRepository extends ServiceEntityRepository
     public function getByID(int $id)
     {
         return $this->createQueryBuilder('p')
-            ->Where('p.restaurants = :id')
+            ->where('p.restaurants = :id')
             ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
