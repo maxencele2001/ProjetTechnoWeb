@@ -26,7 +26,7 @@ class NoAdminPlatController extends AbstractController
      */
     public function showOne(Plat $plat)
     {
-        return $this->render('no_admin_plat/index.html.twig', [
+        return $this->render('no_admin_plat/plat.html.twig', [
             'plat' => $plat,
         ]);
     }

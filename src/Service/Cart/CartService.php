@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\OrderQuantity;
 use App\Entity\Plat;
 use App\Entity\Restaurant;
+use App\Entity\User;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
 use DateTime;
@@ -84,14 +85,16 @@ class CartService{
         return $total;
     }
 
-    public function order($user)
+    public function order(User $user)
     {
         $resto = $this->repoRes->find($this->session->get('resto'));//penser a find avec un objet
         $order = new Order();
-        $order->setOrderedAt(new DateTime());
+        $order->setOrderedAt(new DateTime('+1 hour'));//faire gaffe a l'heure
         $order->setPriceTotal($this->getTotal());
         $order->setRestaurant($resto);
         $order->setUser($user);
+        $user->setBalance($user->getBalance()-($this->getTotal()+2.5));
+        $resto->setBalance($resto->getBalance()+$this->getTotal());
         $this->em->persist($order);
             
         foreach($this->getFullCart() as $item){
