@@ -31,9 +31,8 @@ class RestaurateurController extends AbstractController
     {
         $restaurants = $repo->getByIdUser($this->getUser());
         $nbResto = count($restaurants);
-        $nbOrder = 0;
-        $orderEncours = 0;
-        $orderLivre = 0;
+        $orderEncours = [];
+        $orderLivre = [];
         foreach ($restaurants as $restaurant){
             $resto = $repo->find($restaurant);
             $orderResto = $orderRepo->findBy(
@@ -41,17 +40,15 @@ class RestaurateurController extends AbstractController
             );
             foreach ($orderResto as $order){
                 if($order->getOrderedAt()< new DateTime()){
-                    $orderLivre += 1;
+                    $orderLivre[] = $orderRepo->find($order);
                 }else{
-                    $orderEncours +=1;
+                    $orderEncours[] = $orderRepo->find($order);
                 }
             }        
-            $nbOrder += count($orderResto);
         }
 
         return $this->render('restaurateur/index.html.twig', [
             'nbResto' => $nbResto,
-            'nbOrder' => $nbOrder,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre
         ]); 

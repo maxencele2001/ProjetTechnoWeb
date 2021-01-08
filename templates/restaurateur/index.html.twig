@@ -3,13 +3,13 @@
 </pre>
 
 <pre>
-    {{ dump(nbOrder) }}
-</pre>
-
-<pre>
     {{ dump(orderEncours) }}
 </pre>
 
 <pre>
     {{ dump(orderLivre) }}
+</pre>
+
+<pre>
+    {{ dump(orderLivre | length + orderEncours | length ) }}
 </pre>
