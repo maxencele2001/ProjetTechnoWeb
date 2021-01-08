@@ -9,6 +9,7 @@ use App\Form\RestaurantType;
 use App\Repository\OrderRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -30,18 +31,29 @@ class RestaurateurController extends AbstractController
     {
         $restaurants = $repo->getByIdUser($this->getUser());
         $nbResto = count($restaurants);
+        $nbOrder = 0;
+        $orderEncours = 0;
+        $orderLivre = 0;
         foreach ($restaurants as $restaurant){
             $resto = $repo->find($restaurant);
-            $id = $resto->getId();
-            $nbOrder = $orderRepo->findBy(
-                ['restaurant' => 24.47]
+            $orderResto = $orderRepo->findBy(
+                ['restaurant' => $resto]
             );
-            $nbOrder = count($nbOrder);
+            foreach ($orderResto as $order){
+                if($order->getOrderedAt()< new DateTime()){
+                    $orderLivre += 1;
+                }else{
+                    $orderEncours +=1;
+                }
+            }        
+            $nbOrder += count($orderResto);
         }
 
         return $this->render('restaurateur/index.html.twig', [
             'nbResto' => $nbResto,
-            'nbOrder' => $nbOrder
+            'nbOrder' => $nbOrder,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre
         ]); 
     }
 
