@@ -14,12 +14,12 @@
 {% endblock %}
 
 {% block body %}
-<header>{% include "adminNav.html.twig" %}</header>
+<header>{% include "nav.html.twig" %}</header>
 
 
 <div class="container pt-5">
     <div class="row">   
-
+    
         <div class="col-12">
             <div class="row no-gutters">
 
@@ -67,6 +67,12 @@
               </form>
             </div>
         </label>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+          Aucun plats pour le moment
+        </div>
+         
+                        
 
         {% endfor %}
         </div>   
