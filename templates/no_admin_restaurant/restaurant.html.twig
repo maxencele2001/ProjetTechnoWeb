@@ -56,12 +56,11 @@
             </span>
             <input type="checkbox" />
             <div class="confirm-modal">
-              <form action="" >
+              <form action="{{ path('home') }}" method="get" >
                 <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
                 <h4>Ajouter au panier</h4>
-                <button class="btn">
-                <a href="{{ path('home') }}"></a>
-                Ajouter {{plat.price}}</button>
+                <button class="btnmodal" formaction="{{ path('home') }}">Ajouter {{plat.price}}</button>
+                
                 {# voir bouton de la modal #}
               </form>
             </div>
@@ -70,32 +69,35 @@
         <div class="alert alert-warning" role="alert">
           Aucun plats pour le moment
         </div>
-         
-                        
-
         {% endfor %}
         </div>   
           
     </div>
 </div>
+<p>Coucou</p>
 
 
 {% endblock %}
 
-
-{# <div class="container">
-  <div class="overlay">
-    <div class = "items"></div>
-    <div class = "items head">
-      <p>NOM</p>
-      <hr>
+{# 
+<div class="content-wrapper">
+  
+  <p>A simple modal without any JavaScript whatsoever.</p>
+  
+  <p>Try it out!</p>
+  
+  <br />
+  
+  <label>
+    <span class="btn">Click here to open the confirm</span>
+    <input type="checkbox" />
+    <div class="confirm-modal">
+      <form action="#do-something" method="get">
+        <p>Are you absolutely sure you know what you're doing?</p>
+        <button class="btn">Yes</button>
+        <button class="btn" formaction="#do-something-else">No</button>
+      </form>
     </div>
-    <div class = "items price">
-      <p class="new">12€</p>
-    </div>
-    <div class="items cart">
-      <i class="fa fa-shopping-cart"></i>
-      <span>Ajouter au panier</span>
-  </div>
-</div>
+  </label>
+  
 </div> #}
