@@ -9,9 +9,7 @@
     height: 100px;
     border-radius: 50%;
 }
-.nav-link, .nav-itm, .navbar-brand {
-    color : white;
-} 
+ 
 .info {
     margin-left: 10px;
 }

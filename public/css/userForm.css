@@ -7,10 +7,7 @@ img {
 .login-welcome-message {
   font-size: 13px;
   line-height: 2;
-}
-.nav-link, .nav-itm, .navbar-brand {
-  color : white;
-}  
+} 
 .btn {
   background-color: rgb(20,33,61) ;
   color: rgb(229,229,229) ;
