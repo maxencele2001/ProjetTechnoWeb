@@ -40,6 +40,53 @@
     </div>
   </section>
 </figcaption>
+{# <h3>Les derniers ajouts !</h3>
+{% for restaurant in restaurants %}
+        {# <a class="btn" href="{{ path('restaurant.show', {id: restaurant.id}) }}" role="button">
+
+            
+            <div class="content">
+                <div class="card">
+                    <div class="firstinfo"><img src="{{ asset('uploads/' ~ restaurant.logo) }}"/>
+                      <div class="profileinfo">
+                          <h1>{{ restaurant.name }}</h1>
+                          <h3>{{ restaurant.address }}</h3>
+                          <p class="bio">{{ restaurant.description|striptags|truncate(55, true)|raw }} </p>
+                       </div>
+                    </div>
+                </div>
+                <div class="badgescard">
+                  
+                </div>
+            </div>
+        
+        </a> #}
+
+    {# {% endfor %} #}
+
+{# 
+<div class="body">
+
+<section class="hero-section">
+  <div class="card-grid">
+    <a class="card" href="#">
+      <div class="card__background"></div>
+      <div class="card__content">
+        <p class="card__category">{{restaurant.name}}</p>
+        <h3 class="card__heading"></h3>
+      </div>
+    </a>
+  <div>
+</section>
+
+<div>
+<style>
+.card__background {
+  background-image: url("{{ asset('uploads/' ~ restaurant.logo) }}")
+}
+</style>
+    {% endfor %}  #}
+
 
 
 

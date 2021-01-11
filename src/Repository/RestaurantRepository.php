@@ -39,6 +39,17 @@ class RestaurantRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function findTop(int $number)
+  {
+
+    $qb = $this->createQueryBuilder('a')
+        ->orderBy('a.id', 'DESC')
+        ->setMaxResults($number);
+    
+    return $qb->getQuery()->getResult();
+    
+  }
+  
     // /**
     //  * @return Restaurant[] Returns an array of Restaurant objects
     //  */

@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Restaurant
 {
+
+    public const NB_HOME = 4;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
