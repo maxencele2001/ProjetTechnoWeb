@@ -22,11 +22,11 @@ class NoAdminPlatController extends AbstractController
     }
 
     /**
-     * @Route("/plats/{id}", name="plat")
+     * @Route("/plats/{id}", name="plat.show")
      */
     public function showOne(Plat $plat)
     {
-        return $this->render('no_admin_plat/index.html.twig', [
+        return $this->render('no_admin_plat/plat.html.twig', [
             'plat' => $plat,
         ]);
     }

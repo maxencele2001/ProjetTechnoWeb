@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\PlatRepository;
+use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PlatRepository::class)
- * @ORM\Table(name="plat")
+ * @ORM\Entity(repositoryClass=OrderRepository::class)
+ * @ORM\Table(name="`order`")
  */
-class Plat
+class Order
 {
     /**
      * @ORM\Id
@@ -21,27 +21,27 @@ class Plat
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $name;
+    private $ordered_at;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $price;
+    private $priceTotal;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orders")
      */
-    private $image;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="plats")
+     * @ORM\ManyToOne(targetEntity=Restaurant::class, inversedBy="orders")
      */
-    private $restaurants;
+    private $restaurant;
 
     /**
-     * @ORM\OneToMany(targetEntity=OrderQuantity::class, mappedBy="plats")
+     * @ORM\OneToMany(targetEntity=OrderQuantity::class, mappedBy="orders")
      */
     private $orderQuantities;
 
@@ -55,50 +55,50 @@ class Plat
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getOrderedAt(): ?\DateTimeInterface
     {
-        return $this->name;
+        return $this->ordered_at;
     }
 
-    public function setName(string $name): self
+    public function setOrderedAt(\DateTimeInterface $ordered_at): self
     {
-        $this->name = $name;
+        $this->ordered_at = $ordered_at;
 
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPriceTotal(): ?float
     {
-        return $this->price;
+        return $this->priceTotal;
     }
 
-    public function setPrice(float $price): self
+    public function setPriceTotal(float $priceTotal): self
     {
-        $this->price = $price;
+        $this->priceTotal = $priceTotal;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getUser(): ?User
     {
-        return $this->image;
+        return $this->user;
     }
 
-    public function setImage(string $image): self
+    public function setUser(?User $user): self
     {
-        $this->image = $image;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getRestaurants(): ?Restaurant
+    public function getRestaurant(): ?Restaurant
     {
-        return $this->restaurants;
+        return $this->restaurant;
     }
 
-    public function setRestaurants(?Restaurant $restaurants): self
+    public function setRestaurant(?Restaurant $restaurant): self
     {
-        $this->restaurants = $restaurants;
+        $this->restaurant = $restaurant;
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Plat
     {
         if (!$this->orderQuantities->contains($orderQuantity)) {
             $this->orderQuantities[] = $orderQuantity;
-            $orderQuantity->setPlats($this);
+            $orderQuantity->setOrders($this);
         }
 
         return $this;
@@ -125,8 +125,8 @@ class Plat
     {
         if ($this->orderQuantities->removeElement($orderQuantity)) {
             // set the owning side to null (unless already changed)
-            if ($orderQuantity->getPlats() === $this) {
-                $orderQuantity->setPlats(null);
+            if ($orderQuantity->getOrders() === $this) {
+                $orderQuantity->setOrders(null);
             }
         }
 
