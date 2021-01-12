@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
+use App\Entity\User;
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,24 @@ class CartController extends AbstractController
     public function add(Plat $plat, CartService $cartService)
     {
         $cartService->add($plat);
+        return $this->redirectToRoute('cart.index');
+    }
+
+    /**
+     * @Route("/cart/add1/{id}", name="cart.add1")
+     */
+    public function add1(Plat $plat, CartService $cartService)
+    {
+        $cartService->add1($plat);
+        return $this->redirectToRoute('cart.index');
+    }
+
+    /**
+     * @Route("/cart/rem1/{id}", name="cart.rem1")
+     */
+    public function rem1(Plat $plat, CartService $cartService, $id)
+    {
+        $cartService->rem1($plat, $id);
         return $this->redirectToRoute('cart.index');
     }
 
