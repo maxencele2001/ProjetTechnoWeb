@@ -44,16 +44,14 @@
                         <div class="col col-1">Id</div>
                         <div class="col col-2">Name</div>
                         <div class="col col-3">Price</div>
-                        <div class="col col-4">Image</div>
-                        <div class="col col-5">More</div>
+                        <div class="col col-4">More</div>
                         </li>
                         {% for plat in plats %}
                         <li class="table-row">
                         <div class="col col-1" data-label="Id">{{ plat.id }}</div>
                         <div class="col col-2" data-label="Name">{{ plat.name }}</div>
                         <div class="col col-3" data-label="Price">{{ plat.price }} €</div>
-                        <div class="col col-4" data-label="Image">{{ plat.image }}</div>
-                        <div class="col col-5 d-flex" data-label="More">
+                        <div class="col col-4 d-flex" data-label="More">
                             <button class="btn">
                                 <a href="{{ path('plat_show', {'id': plat.id}) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -74,9 +72,9 @@
                         </div>
                         </li>
                         {% else %}
-                            <li class="table-row">
-                                <div class="col col-2" data-label="Info">No records found</div>
-                            </li>
+                            <div class="alert alert-danger" role="alert">
+                                 No records found
+                            </div>
                         {% endfor %}
                     </ul>
                 </div>
