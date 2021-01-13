@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Restaurant
 {
 
-    public const NB_HOME = 4;
+    public const NB_HOME = 3;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
