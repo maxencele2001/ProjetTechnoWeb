@@ -42,8 +42,31 @@
 </figcaption>
 <h3>Les derniers ajouts !</h3>
 
-<div class="d-flex">
+<div class="new d-flex justify-content-around">
 {% for restaurant in restaurants %}
+
+<div class="card">
+  <div class="banner">
+    <img src="{{ asset('uploads/' ~ restaurant.logo) }}" class="profil"/>
+  </div>
+  <div class="menu">
+    <div class="opener"><span></span><span></span><span></span></div>
+  </div>
+  <h2 class="name">{{ restaurant.name }}</h2>
+  <div class="title">{{ restaurant.address }}, {{ restaurant.city }}</div>
+  <div class="desc">{{ restaurant.description|striptags|truncate(150, true)|raw }}</div>
+  <div class="actions">
+    <div class="follow-btn">
+      <button>Voir</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
     {# <a class="btn" href="{{ path('restaurant.show', {id: restaurant.id}) }}" role="button">
       <div class="content">
           <div class="card">
@@ -61,30 +84,26 @@
       </div>
     </a> #}
       
-  
+{#   
     <div class="blog-card alt">
-    <div class="meta">
-      <div class="photo"></div>
-    </div>
-    <div class="description">
-      <h3>{{restaurant.name}}</h3>
-      <h4>{{restaurant.address}}</h4>
-      <p>{{ restaurant.description|striptags|truncate(100, true)|raw }}</p>
-      <p class="read-more">
-        <a href="{{ path('restaurant.show', {id: restaurant.id}) }}">Voir plus</a>
-      </p>
-    </div>
-  </div>
-  
-  <style>
-.photo {
-  background-image: url("{{ asset('uploads/' ~ restaurant.logo) }}")
-}
-</style>
+      <div class="d-flex">
+        <div class="">
+          <img src="{{ asset('uploads/' ~ restaurant.logo) }}">
+        </div>
+        <div class="description">
+          <h3>{{restaurant.name}}</h3>
+          <h4>{{restaurant.address}}</h4>
+          <p>{{ restaurant.description|striptags|truncate(100, true)|raw }}</p>
+          <p class="read-more">
+            <a href="{{ path('restaurant.show', {id: restaurant.id}) }}">Voir plus</a>
+          </p>
+        </div>
+      <div>
+  </div> #}
 
   {% endfor %}
-</div>
 
+  </div>
 
 
 

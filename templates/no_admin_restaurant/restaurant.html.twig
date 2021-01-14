@@ -10,7 +10,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/admin/adminShowRestaurant.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/restaurantDetails.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -66,9 +66,9 @@
             </div>
         </label>
         {% else %}
-        <div class="alert alert-warning" role="alert">
-          Aucun plats pour le moment
-        </div>
+          <div class="alert alert-warning" role="alert">
+            Aucun plats pour le moment
+          </div>
         {% endfor %}
         </div>   
           
@@ -78,25 +78,3 @@
 
 {% endblock %}
 
-{# 
-<div class="content-wrapper">
-  
-  <p>A simple modal without any JavaScript whatsoever.</p>
-  
-  <p>Try it out!</p>
-  
-  <br />
-  
-  <label>
-    <span class="btn">Click here to open the confirm</span>
-    <input type="checkbox" />
-    <div class="confirm-modal">
-      <form action="#do-something" method="get">
-        <p>Are you absolutely sure you know what you're doing?</p>
-        <button class="btn">Yes</button>
-        <button class="btn" formaction="#do-something-else">No</button>
-      </form>
-    </div>
-  </label>
-  
-</div> #}
