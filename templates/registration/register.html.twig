@@ -59,8 +59,11 @@
                                 label: 'Ville','attr':{'class': 'form-control','placeholder' :'Votre ville'}
                             }) }}
                         </div>
-                                
+                        {{ form_row(registrationForm.roles) }}
                         {{ form_row(registrationForm.agreeTerms) }}
+                    
+                                
+                        
 
                         <button type="submit" class="btn">S'enregistrer</button>
                     {{ form_end(registrationForm) }}
