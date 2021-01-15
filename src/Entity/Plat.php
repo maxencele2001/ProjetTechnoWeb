@@ -45,9 +45,20 @@ class Plat
      */
     private $orderQuantities;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="plats")
+     */
+    private $notes;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $note_moyenne;
+
     public function __construct()
     {
         $this->orderQuantities = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +140,48 @@ class Plat
                 $orderQuantity->setPlats(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setPlats($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getPlats() === $this) {
+                $note->setPlats(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNoteMoyenne(): ?float
+    {
+        return $this->note_moyenne;
+    }
+
+    public function setNoteMoyenne(?float $note_moyenne): self
+    {
+        $this->note_moyenne = $note_moyenne;
 
         return $this;
     }
