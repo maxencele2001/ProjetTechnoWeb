@@ -40,37 +40,44 @@
             </div> 
         </div> 
 
-        <div class="">
-        {% for plat in plats %}
-          <label>
-            <span class="bt">
-                <a class="Lats">
-                    <figure>
-                      <div class="price"><span >{{plat.price}} €</span></div>
-                      <figcaption>
-                        <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
-                                               
-                      </figcaption>
-                    </figure>
-                </a>
-            </span>
-            <input type="checkbox" />
-            <div class="confirm-modal">
-              <form action="{{ path('home') }}" method="get" >
-                <img class="imgModal" src="{{ asset('uploads/' ~ plat.image) }}">
-                <h4>Ajouter au panier</h4>
-                <a class="btnmodal" href="{{ path('cart.add', {id: plat.id}) }}" role="button">Ajouter au panier</a>
-                
-                {# voir bouton de la modal #}
-              </form>
+        <div class="d-flex">
+          {% for plat in plats %}
+
+          <div class="container">
+            <a class="button" href="#popup-{{plat.id}}">
+              <figure>
+                <div class="price"><span >{{plat.price}} €</span></div>
+                <figcaption>
+                  <img class="imgPlat" src="{{ asset('uploads/' ~ plat.image) }}">
+                                        
+                </figcaption>
+              </figure>
+            
+            </a>
+            <div class="popup" id="popup-{{plat.id}}">
+              <div class="popup-inner">
+                <div class="popup__photo">
+                  <img class="" src="{{ asset('uploads/' ~ plat.image) }}">
+                </div>
+                <div class="popup__text">
+                  <h2>{{plat.name}}</h2>
+                  <p>{{plat.price}} €</p>
+                  <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
+                </div>
+                <a class="popup__close" href="#">X</a>
+              </div>
             </div>
-        </label>
-        {% else %}
-          <div class="alert alert-warning" role="alert">
-            Aucun plats pour le moment
-          </div>
-        {% endfor %}
+          </div> 
+          {% else %}
+            <div class="alert alert-warning" role="alert">
+              Aucun plats pour le moment
+            </div>
+          {% endfor %}
+          
         </div>   
+
+          
+          
           
     </div>
 </div>

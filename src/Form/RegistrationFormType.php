@@ -42,8 +42,8 @@ class RegistrationFormType extends AbstractType
 
             ->add('roles', ChoiceType::class, [
                 'choices'  => [
-                    'User' => self::user,
-                    'Restaurant' => self::resto,
+                    'Client' => self::user,
+                    'Restaurateur' => self::resto,
                     ],
                     'expanded' => false,
                     'multiple' => true,
