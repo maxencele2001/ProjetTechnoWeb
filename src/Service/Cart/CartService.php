@@ -41,6 +41,7 @@ class CartService{
 
         if(empty($panier)){
             $this->session->set('resto',$idResto);
+            $Resto = $this->session->get('resto', []);
         }
         if(!empty($panier[$plat->getId()])){
             if($Resto == $idResto){
@@ -102,7 +103,9 @@ class CartService{
             
             $user->setBalance($user->getBalance()-($this->getTotal()+2.5));
             $resto->setBalance($resto->getBalance()+$this->getTotal());
-            $admin = $this->repoUser->find(3);
+            $admin = $this->repoUser->findOneBy([
+                'name' => "admin"
+            ]);//à modifier pour find by roles pour plus de securité
             $admin->setBalance($admin->getBalance()+2.5);
             $this->em->persist($order);
                 
