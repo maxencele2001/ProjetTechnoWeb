@@ -8,6 +8,7 @@ use App\Repository\PlatRepository;
 use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Form\RestaurantType;
+use App\Repository\NoteRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
@@ -182,6 +183,7 @@ class RestaurantController extends AbstractController
     public function orderList(RestaurantRepository $repo, OrderRepository $orderRepo, Restaurant $restaurant)
     {
         $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
+        //$orders = $restaurant->getOrders(); //autre façon de le faire
         $orders = array_merge($orders[0], $orders[1]);
         return $this->render('restaurateur/orderList.html.twig', [
             'orders' => $orders,
@@ -255,4 +257,17 @@ class RestaurantController extends AbstractController
             'orders' => $orderLivre,
         ]);
     }
+        /**
+     * @Route("/{id}/order/note", name="resto.order.progress", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function Avis(NoteRepository $noteRepo)
+    {
+        $notes = $noteRepo->findAll();  
+        return $this->render('restaurateur/noteList.html.twig', [
+            'notes' => $notes,
+        ]);
+
+    }
+
+    
 }

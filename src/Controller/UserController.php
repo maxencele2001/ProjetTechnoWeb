@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Note;
 use App\Entity\Plat;
+use App\Entity\User;
 use App\Form\NoteType;
 use App\Repository\NoteRepository;
 use App\Repository\OrderRepository;
@@ -78,6 +79,7 @@ class UserController extends AbstractController
      */
     public function note(Plat $plat, Request $request, EntityManagerInterface $em, NoteRepository $noteRepo)
     {
+        $user = $this->getUser();
         $note = new Note();
         $form = $this->createForm(NoteType::class,$note);
         $form->handleRequest($request);
@@ -97,7 +99,9 @@ class UserController extends AbstractController
                 $noteMoyenne = array_sum($notes)/(count($notes));
             }
             $plat->setNoteMoyenne($noteMoyenne);
-            $note->setPlats($plat);
+            $note->setPlats($plat)
+                 ->setUser($user);
+
             $em->persist($note);
             $em->flush();
             return $this->redirectToRoute('profil.order');

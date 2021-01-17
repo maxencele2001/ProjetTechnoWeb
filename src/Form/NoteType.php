@@ -16,8 +16,7 @@ class NoteType extends AbstractType
         $builder
         ->add('note', NumberType::class, array(
             'attr' => array('min' => 1, 'max' => 10)
-        ))
-        ;
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
