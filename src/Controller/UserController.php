@@ -85,6 +85,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $existingNote = $noteRepo->findOneBy([
+                'plats' => $plat,
+                'user' => $user
+            ]);
+
             $noteplats = $noteRepo->findBy([
                 'plats' => $plat
             ]);
@@ -92,18 +97,24 @@ class UserController extends AbstractController
             foreach($noteplats as $noteplat){
                 $notes[] = $noteplat->getNote();
             }
-            $notes[] = $note->getNote();
-            if(empty($notes)){
-                $noteMoyenne = $note->getNote();
-            }else{
-                $noteMoyenne = array_sum($notes)/(count($notes));
-            }
-            $plat->setNoteMoyenne($noteMoyenne);
-            $note->setPlats($plat)
-                 ->setUser($user);
+        
+            if($existingNote == null){
+                $note->setPlats($plat)
+                     ->setUser($user);
 
-            $em->persist($note);
+                $notes[] = $note->getNote();
+                $em->persist($note);
+            }else{
+                $lanote = $existingNote->getNote();
+                unset($notes[$lanote]);
+                $existingNote->setNote($note->getNote());
+                $notes[] = $note->getNote();
+            }
+
+            $noteMoyenne = array_sum($notes)/(count($notes));
+            $plat->setNoteMoyenne($noteMoyenne);
             $em->flush();
+            
             return $this->redirectToRoute('profil.order');
         }
 
