@@ -18,7 +18,7 @@
       {% if app.user %}
       <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="{{ path('app_logout') }}" class="nav-link">Connexion</a>
+                <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
             </li>
         </ul>
       {% else %}
@@ -27,7 +27,7 @@
   </div>
 </nav>
 <style>
-  .nav-link, .nav-itm, .navbar-brand {
+  .nav-link, .nav-itm, .navbar-brand:hover {
     color : white;
   } 
 </style>
