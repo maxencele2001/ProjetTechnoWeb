@@ -1,14 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="jumbotron">
-        <h1>LE PANIER</h1>
+<div class="jumbotron">
+        <h1>MON PANIER</h1>
     </div>
+<div class="container">
+
     {% if items | length > 0 %}
-        <table class="table">
+
+         {% for item in items %}
+         <!--Section: Block Content-->
+<section>
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-8">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4 wish-list">
+
+          <h5 class="mb-4">Commande (<span>?</span> plats)</h5>
+
+          <div class="row mb-4">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                <img class="img-fluid w-100" src="{{ asset('uploads/' ~ item.plat.image) }}" alt="{{ item.plat.name }}">
+              </div>
+            </div>
+            <div class="col-md-7 col-lg-9 col-xl-9">
+              <div>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h5>{{ item.plat.name }}</h5>
+                  </div>
+                  <div>
+                    <div class="def-number-input number-input safari_only mb-0 w-100">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        class="minus decrease"></button>
+                      <input class="quantity" min="0" name="quantity" value="1" type="number">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        class="plus increase"></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <a href="{{path('cart.remove', {'id': item.plat.id})}}" type="button" class="card-link-secondary small text-uppercase mr-3"><i
+                        class="fas fa-trash-alt mr-1"></i>Supprimer</a>
+                  </div>
+                  <p class="mb-0"><span><strong id="summary">{{ item.plat.price }}€</strong></span></p class="mb-0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          
+          
+        </div>
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-lg-4">
+
+      <!-- Card -->
+      <div class="mb-3">
+        <div class="pt-4">
+
+          <h5 class="mb-3">Total</h5>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+              Coûts des plats
+              <span>{{ total }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              Livraison
+              <span>Gratuis</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+              <div>
+                <strong>Coût total</strong>
+                {# <strong>
+                  <p class="mb-0">(TVA incluse)</p>
+                </strong> #}
+              </div>
+              <span><strong>{{ total }}</strong></span>
+            </li>
+          </ul>
+
+          <button type="button" class="btn btn-primary btn-block"><a href="{{path('cart.order')}}" style="color:white;">Je commande !</a></button>
+
+        </div>
+      </div>
+      <!-- Card -->
+
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!--Section: Block Content-->
+
+       {# <div class="card">
+            <div class="d-flex justify-content-between">
+                <img src="{{ asset('uploads/' ~ item.plat.image) }}" style="width:15%;">
+                <h2>{{ item.plat.name }}<h2>
+                <h2>{{ item.plat.price }}<h2>
+            </div>
+       </div> #}
+        {% endfor %}
+        {# <table class="table">
             <thead>
                 <tr>
                     <th>Produit</th>
@@ -20,6 +133,7 @@
             <tbody>
             {% for item in items %}
                 <tr>
+                    <td>{{ item.plat.image }}</td>
                     <td>{{ item.plat.name }}</td>
                     <td>{{ item.plat.price }}</td>
                     <td>{{ item.quantity }}</td>
@@ -42,7 +156,7 @@
                     <td></td>
                 </tr>
             </tfoot>
-        </table>
+        </table> #}
 
 
 
