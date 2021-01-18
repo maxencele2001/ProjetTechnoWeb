@@ -1,0 +1,22 @@
+<h1>Nombre de restaurants : {{restaurants | length}}
+<pre>
+    {{ dump(restaurants) }}
+</pre>
+
+<h2>Nombre de commandes totales : {{ orderLivre | length + orderEncours | length }} </h2>
+
+<h3>Commandes en cours</h3>
+<pre>
+    {{ dump(orderEncours) }}
+</pre>
+
+<h3>Commandes livrées</h3>
+<pre>
+    {{ dump(orderLivre) }}
+</pre>
+
+<pre>
+    {{ dump(restaurateur) }}
+</pre>
+
+Chiffre d'affaire : {{restaurateur.balance}}

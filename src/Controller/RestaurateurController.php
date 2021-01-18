@@ -6,8 +6,11 @@ use App\Entity\Plat;
 use App\Entity\Restaurant;
 use App\Form\PlatType;
 use App\Form\RestaurantType;
+use App\Repository\OrderRepository;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,6 +24,100 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestaurateurController extends AbstractController
 {
     #Pourquoi pas une page home "/" pour afficher ses stats 
+
+    /**
+     * @Route("/", name="restaurateur.dashboard", methods={"GET"})
+     */
+    public function dashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo)
+    {
+        $restaurants = $repo->getByIdUser($this->getUser());
+        $restaurateur = $userRepo->find($this->getUser());
+        $orderEncours = [];
+        $orderLivre = [];
+        foreach ($restaurants as $restaurant){
+            $resto = $repo->find($restaurant);
+            $orderResto = $orderRepo->findBy(
+                ['restaurant' => $resto]
+            );
+            foreach ($orderResto as $order){
+                if($order->getOrderedAt()< new DateTime()){
+                    $orderLivre[] = $orderRepo->find($order);
+                }else{
+                    $orderEncours[] = $orderRepo->find($order);
+                }
+            }        
+        }
+
+        return $this->render('restaurateur/index.html.twig', [
+            'restaurants' => $restaurants,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre,
+            'restaurateur' => $restaurateur
+        ]); 
+    }
+
+
+    ##################### Commandes #############################
+
+    public function PREFABorderList(RestaurantRepository $repo, OrderRepository $orderRepo)
+    {
+        $restaurants = $repo->getByIdUser($this->getUser());
+        $orderEncours = [];
+        $orderLivre = [];
+        foreach ($restaurants as $restaurant){
+            $resto = $repo->find($restaurant);
+            $orderResto = $orderRepo->findBy(
+                ['restaurant' => $resto]
+            );
+            foreach ($orderResto as $order){
+                if($order->getOrderedAt()< new DateTime()){
+                    $orderLivre[] = $orderRepo->find($order);
+                }else{
+                    $orderEncours[] = $orderRepo->find($order);
+                }
+            }        
+        }
+        $orders = [$orderEncours,$orderLivre];
+
+        return $orders;
+    }
+
+    /**
+     * @Route("/myrestaurants/{id}/order", name="restaurateur.order", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function orderList(RestaurantRepository $repo, OrderRepository $orderRepo)
+    {
+        $orders = $this->PREFABorderList($repo,$orderRepo);
+        $orders = array_merge($orders[0], $orders[1]);
+        return $this->render('restaurateur/orderList.html.twig', [
+            'orders' => $orders,
+        ]);
+    }
+    
+    /**
+     * @Route("/myrestaurants/{id}/order/progress", name="restaurateur.order.progress", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function ProgressList(RestaurantRepository $repo, OrderRepository $orderRepo)
+    {
+        $orders = $this->PREFABorderList($repo,$orderRepo);
+        $orderEncours = $orders[0];
+        return $this->render('restaurateur/orderList.html.twig', [
+            'orders' => $orderEncours,
+        ]);
+
+    }
+
+    /**
+     * @Route("/myrestaurants/{id}/order/delivered", name="restaurateur.order.delivered", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function DeliveredList(RestaurantRepository $repo, OrderRepository $orderRepo)
+    {
+        $orders = $this->PREFABorderList($repo,$orderRepo);
+        $orderLivre = $orders[1];
+        return $this->render('restaurateur/orderList.html.twig', [
+            'orders' => $orderLivre,
+        ]);
+    }
 
     ##################### Restaurant #############################
 

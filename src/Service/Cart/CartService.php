@@ -9,6 +9,7 @@ use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,16 +19,18 @@ class CartService{
     protected $session;
     protected $repoPlat;
     protected $repoRes;
+    protected $repoUser;
     protected $em;
     public $idResto;
     
 
-    public function __construct(SessionInterface $session, PlatRepository $repoPlat, EntityManagerInterface $em, RestaurantRepository $repoRes)
+    public function __construct(SessionInterface $session, PlatRepository $repoPlat, EntityManagerInterface $em, RestaurantRepository $repoRes, UserRepository $repoUser)
     {
         $this->session = $session;
         $this->repoPlat = $repoPlat;
         $this->em = $em;
         $this->repoRes = $repoRes;
+        $this->repoUser = $repoUser;
     }
 
     public function add(Plat $plat)
@@ -38,6 +41,7 @@ class CartService{
 
         if(empty($panier)){
             $this->session->set('resto',$idResto);
+            $Resto = $this->session->get('resto', []);
         }
         if(!empty($panier[$plat->getId()])){
             if($Resto == $idResto){
@@ -88,22 +92,31 @@ class CartService{
     public function order(User $user)
     {
         $resto = $this->repoRes->find($this->session->get('resto'));//penser a find avec un objet
-        $order = new Order();
-        $order->setOrderedAt(new DateTime('+1 hour'));//faire gaffe a l'heure
-        $order->setPriceTotal($this->getTotal());
-        $order->setRestaurant($resto);
-        $order->setUser($user);
-        $user->setBalance($user->getBalance()-($this->getTotal()+2.5));
-        $resto->setBalance($resto->getBalance()+$this->getTotal());
-        $this->em->persist($order);
+
+        if($user->getBalance()>= $this->getTotal()+2.5)
+        {
+            $order = new Order();
+            $order->setOrderedAt(new DateTime('+1 hour'));//faire gaffe a l'heure
+            $order->setPriceTotal($this->getTotal());
+            $order->setRestaurant($resto);
+            $order->setUser($user);
             
-        foreach($this->getFullCart() as $item){
-            $orderQuantity = new OrderQuantity();
-            $orderQuantity->setOrders($order);
-            $orderQuantity->setPlats($item['plat']);
-            $orderQuantity->setQuantity($item['quantity']);
-            $this->em->persist($orderQuantity);
+            $user->setBalance($user->getBalance()-($this->getTotal()+2.5));
+            $resto->setBalance($resto->getBalance()+$this->getTotal());
+            $admin = $this->repoUser->findOneBy([
+                'name' => "admin"
+            ]);//à modifier pour find by roles pour plus de securité
+            $admin->setBalance($admin->getBalance()+2.5);
+            $this->em->persist($order);
+                
+            foreach($this->getFullCart() as $item){
+                $orderQuantity = new OrderQuantity();
+                $orderQuantity->setOrders($order);
+                $orderQuantity->setPlats($item['plat']);
+                $orderQuantity->setQuantity($item['quantity']);
+                $this->em->persist($orderQuantity);
+            }
+            $this->em->flush();
         }
-        $this->em->flush();
     }
 }

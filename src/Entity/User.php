@@ -73,9 +73,21 @@ class User implements UserInterface
      */
     private $restaurants;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
+     */
+    private $orders;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Note::class, mappedBy="user")
+     */
+    private $notes;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
+        $this->orders = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,6 +264,66 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($restaurant->getUser() === $this) {
                 $restaurant->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Note[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Note $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Note $note): self
+    {
+        if ($this->notes->removeElement($note)) {
+            // set the owning side to null (unless already changed)
+            if ($note->getUser() === $this) {
+                $note->setUser(null);
             }
         }
 
