@@ -1,4 +1,0 @@
-index:
-    path: /
-    controller: App\Controller\NoAdminRestaurantController::index
-
