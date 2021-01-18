@@ -62,12 +62,12 @@
                 <div class="popup__text">
                   <h2>{{plat.name}}</h2>
                   <p>{{plat.price}} €</p>
-                  {% if app.user %}
+                  {# {% if app.user %} #}
                     <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
-                  {% else %}
+                  {# {% else %}
                     
 
-                  {% endif %}
+                  {% endif %} #}
                   
                 </div>
                 <a class="popup__close" href="#">X</a>
