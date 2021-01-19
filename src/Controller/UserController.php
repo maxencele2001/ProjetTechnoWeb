@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Note;
+use App\Entity\Order;
+use App\Entity\OrderQuantity;
 use App\Entity\Plat;
 use App\Entity\User;
 use App\Form\NoteType;
 use App\Repository\NoteRepository;
+use App\Repository\OrderQuantityRepository;
 use App\Repository\OrderRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -75,9 +78,22 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profil/order/delivered/{id}", name="profil.order.note", methods={"GET","POST"})
+     * @Route("/profil/order/delivered/{order}", name="profil.order.show", methods={"GET"})
      */
-    public function note(Plat $plat, Request $request, EntityManagerInterface $em, NoteRepository $noteRepo)
+    public function showOrder(Order $order, OrderQuantityRepository $repo)
+    {
+        $orderQuantities = $repo->findBy([
+            'orders' => $order
+        ]);
+        return $this->render('user/orderMore.html.twig', [
+            'orders' => $orderQuantities,
+        ]);
+    }
+
+    /**
+     * @Route("/profil/order/delivered/{order}/{plat}", name="profil.order.note", methods={"GET","POST"})
+     */
+    public function note(Order $order, Plat $plat, Request $request, EntityManagerInterface $em, NoteRepository $noteRepo)
     {
         $user = $this->getUser();
         $note = new Note();
@@ -105,8 +121,12 @@ class UserController extends AbstractController
                 $notes[] = $note->getNote();
                 $em->persist($note);
             }else{
-                $lanote = $existingNote->getNote();
-                unset($notes[$lanote]);
+                if(count($notes) == 1){
+                    $notes = [];
+                }else{
+                    $lanote = $existingNote->getNote();
+                    unset($notes[array_search($lanote,$notes)]);
+                }
                 $existingNote->setNote($note->getNote());
                 $notes[] = $note->getNote();
             }

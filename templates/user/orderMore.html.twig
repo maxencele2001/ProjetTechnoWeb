@@ -1,0 +1,7 @@
+{% for order in orders %}
+    {{order.quantity}} x {{order.plats.name}} = {{order.plats.price * order.quantity}}
+    <br>
+    <a class="btn" href="{{ path('profil.order.note', {order: order.orders.id ,plat: order.plats.id}) }}" role="button">Noter</a>
+    <br>
+{% endfor %}
+{{orders[0].orders.priceTotal}}
