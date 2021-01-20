@@ -2,6 +2,7 @@
 
 namespace App\Service\Cart;
 
+use Symfony\Component\Mime\Email;
 use App\Entity\Order;
 use App\Entity\OrderQuantity;
 use App\Entity\Plat;
@@ -10,9 +11,11 @@ use App\Entity\User;
 use App\Repository\PlatRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\UserRepository;
+use App\Repository\MailC;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 
 class CartService{
     
