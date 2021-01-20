@@ -82,65 +82,92 @@ class UserController extends AbstractController
      */
     public function showOrder(Order $order, OrderQuantityRepository $repo)
     {
-        $orderQuantities = $repo->findBy([
-            'orders' => $order
-        ]);
-        return $this->render('user/orderMore.html.twig', [
-            'orders' => $orderQuantities,
-        ]);
+        $user = $this->getUser();
+        $verifUser = $order->getUser();
+        if($verifUser == $user){
+            $orderQuantities = $repo->findBy([
+                'orders' => $order
+            ]);
+            return $this->render('user/orderMore.html.twig', [
+                'orders' => $orderQuantities,
+            ]);
+        }else{
+            return $this->redirectToRoute('profil.order.delivered');
+        }
     }
 
     /**
      * @Route("/profil/order/delivered/{order}/{plat}", name="profil.order.note", methods={"GET","POST"})
      */
-    public function note(Order $order, Plat $plat, Request $request, EntityManagerInterface $em, NoteRepository $noteRepo)
+    public function note(Order $order, Plat $plat, Request $request, EntityManagerInterface $em, NoteRepository $noteRepo, OrderQuantityRepository $orderRepo)
     {
         $user = $this->getUser();
         $note = new Note();
         $form = $this->createForm(NoteType::class,$note);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $existingNote = $noteRepo->findOneBy([
-                'plats' => $plat,
-                'user' => $user
-            ]);
-
-            $noteplats = $noteRepo->findBy([
-                'plats' => $plat
-            ]);
-            $notes = [];
-            foreach($noteplats as $noteplat){
-                $notes[] = $noteplat->getNote();
-            }
-        
-            if($existingNote == null){
-                $note->setPlats($plat)
-                     ->setUser($user);
-
-                $notes[] = $note->getNote();
-                $em->persist($note);
-            }else{
-                if(count($notes) == 1){
-                    $notes = [];
-                }else{
-                    $lanote = $existingNote->getNote();
-                    unset($notes[array_search($lanote,$notes)]);
-                }
-                $existingNote->setNote($note->getNote());
-                $notes[] = $note->getNote();
-            }
-
-            $noteMoyenne = array_sum($notes)/(count($notes));
-            $plat->setNoteMoyenne($noteMoyenne);
-            $em->flush();
-            
-            return $this->redirectToRoute('profil.order');
-        }
-
-        return $this->render('user/newNote.html.twig',[
-            'plat' => $plat,
-            'form' => $form->createView(),
+        $verifUser = $order->getUser();
+        $verifOrders = $orderRepo->findBy([
+            'plats' => $plat
         ]);
+        foreach($verifOrders as $verifOrder){
+            if($verifOrder->getOrders() == $order){
+                $verif = true;
+                $verifOrderDate = $verifOrder->getOrders();
+            }
+        }
+        $datehier = New DateTime('-1 day +1 hour');
+        $dateLivre = New DateTime();
+        $verifDate = $verifOrderDate->getOrderedAt();
+        if($verifUser == $user && $verif == true ){
+            if($dateLivre > $verifDate && $verifDate > $datehier){
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $existingNote = $noteRepo->findOneBy([
+                        'plats' => $plat,
+                        'user' => $user
+                    ]);
+        
+                    $noteplats = $noteRepo->findBy([
+                        'plats' => $plat
+                    ]);
+                    $notes = [];
+                    foreach($noteplats as $noteplat){
+                        $notes[] = $noteplat->getNote();
+                    }
+            
+                    if($existingNote == null){
+                        $note->setPlats($plat)
+                            ->setUser($user);
+        
+                        $notes[] = $note->getNote();
+                        $em->persist($note);
+                    }else{
+                        if(count($notes) == 1){
+                            $notes = [];
+                        }else{
+                            $lanote = $existingNote->getNote();
+                            unset($notes[array_search($lanote,$notes)]);
+                        }
+                        $existingNote->setNote($note->getNote());
+                        $notes[] = $note->getNote();
+                    }
+    
+                    $noteMoyenne = array_sum($notes)/(count($notes));
+                    $plat->setNoteMoyenne($noteMoyenne);
+                    $em->flush();
+                    
+                    return $this->redirectToRoute('profil.order');
+                }
+                return $this->render('user/newNote.html.twig',[
+                    'plat' => $plat,
+                    'form' => $form->createView(),
+                ]);
+            }else{
+                return $this->redirectToRoute('profil.order.delivered');
+            }
+            
+            
+        }else{
+            return $this->redirectToRoute('profil.order.delivered');
+        }
     }
 }
