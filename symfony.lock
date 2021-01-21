@@ -150,9 +150,12 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+<<<<<<< HEAD
     "swiftmailer/swiftmailer": {
         "version": "v6.2.5"
     },
+=======
+>>>>>>> baa6930392c4559b6cde5478f6666b78c8ce6036
     "symfony/asset": {
         "version": "v4.4.16"
     },
@@ -435,6 +438,7 @@
     "symfony/stopwatch": {
         "version": "v4.4.16"
     },
+<<<<<<< HEAD
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
@@ -449,6 +453,8 @@
             "./config/packages/test/swiftmailer.yaml"
         ]
     },
+=======
+>>>>>>> baa6930392c4559b6cde5478f6666b78c8ce6036
     "symfony/test-pack": {
         "version": "v1.0.7"
     },
@@ -536,6 +542,21 @@
     "symfony/yaml": {
         "version": "v4.4.16"
     },
+<<<<<<< HEAD
+=======
+    "twig/extensions": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a86723ee8d8b2f9437c8ce60a5546a1c267da5ed"
+        },
+        "files": [
+            "./config/packages/twig_extensions.yaml"
+        ]
+    },
+>>>>>>> baa6930392c4559b6cde5478f6666b78c8ce6036
     "twig/extra-bundle": {
         "version": "v3.1.1"
     },

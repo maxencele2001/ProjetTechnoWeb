@@ -100,7 +100,7 @@ class CartService{
         {
             $order = new Order();
             $order->setOrderedAt(new DateTime('+1 hour'));//faire gaffe a l'heure
-            $order->setPriceTotal($this->getTotal());
+            $order->setPriceTotal($this->getTotal()+2.5);
             $order->setRestaurant($resto);
             $order->setUser($user);
             

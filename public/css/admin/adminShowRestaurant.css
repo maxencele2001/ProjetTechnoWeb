@@ -1,0 +1,14 @@
+.profil {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.info {
+  margin-left: 10px;
+}
+.btn {
+  background-color: rgb(20,33,61) ;
+  margin-right: 0.5em;
+}

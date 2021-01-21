@@ -138,7 +138,7 @@ class RestaurateurController extends AbstractController
     public function oneRestaurant(Restaurant $restaurant)//rajouter un if ou genre on verif si ce resto appartient bien au user
     {
         return $this->render('restaurateur/restaurant/restaurant.html.twig',[
-            'restaurant' => $restaurant
+            'restaurant' => $restaurant 
         ]);
     }
 

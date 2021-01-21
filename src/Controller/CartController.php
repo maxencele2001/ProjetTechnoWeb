@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
+use App\Entity\Restaurant;
 use App\Entity\User;
+use App\Repository\RestaurantRepository;
+use App\Repository\UserRepository;
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
+    protected $repoUser;
     /**
      * @Route("/cart", name="cart.index")
      */
@@ -45,25 +49,27 @@ class CartController extends AbstractController
      */
     public function order(CartService $cartService)
     {
-        //$id = $this->get('session')->get('id');
-        //$emailUser=$user->getEmail();
+
         $cartService->order($this->getUser());
-        return $this->redirectToRoute('cart.email');
-        //return $this->redirectToRoute('cart.email', array('cartService' => $cartService));
+        $email=$cartService->order($this->getUser());
+        //return $this->redirectToRoute('cart.email');
+        return $this->redirectToRoute('cart.email', array('email' => $email));
     }
     /**
      * @Route("/cart/email", name="cart.email")
      */
-    public function email( \Swift_Mailer $mailer){
-        $cartService=('test');
+    public function email( \Swift_Mailer $mailer, $email){
+        //$resto = $this->repoResto->find($this->session->get('resto'));
+        //$email=$resto->getEmail();
+        $info=('test');
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
-            ->setTo('aurelien.robier@numericable.fr')
+            ->setTo($email)
             ->setBody(
                 $this->renderView(
                     // templates/emails/registration.html.twig
                     'emails/registration.html.twig',
-                    ['cartService' => $cartService]
+                    ['info' => $info]
                 ),
                 'text/html'
             );
@@ -72,49 +78,4 @@ class CartController extends AbstractController
         return $this->redirectToRoute('index');
     }
 }
-    /*
-    public function email( \Swift_Mailer $mailer, User $user){
-        $user->$this->getUser();
-        $name=$user->getName();
-        $emailUser=$user->getEmail();
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo($emailUser)
-            ->setBody(
-                $this->renderView(
-                    // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    ['name' => $name]
-                ),
-                'text/html'
-            );
-                $mailer->send($message);
-    
-        return $this->redirectToRoute('index');
-    }
-    
-    public function email( \Swift_Mailer $mailer){
-        $name='Hubert';
-        //get user 
-        // On crée le message
-                $message = (new \Swift_Message('Ordre de commande'))
-                    // On attribue l'expéditeur
-                    ->setFrom('email@envoie.com')
-                    // On attribue le destinataire
-                    ->setTo('aurelien.robier@numericable.fr')
-                    // On crée le texte avec la vue
-                    ->setBody(
-                        $this->renderView(
-                            'emails/registration.html.twig', ['name' => $name ]
-                        ),
-                        'text/html'
-                    )
-                ;
-                $mailer->send($message);
-    
-                $this->addFlash('message', 'Votre message a été transmis, nous vous répondrons dans les meilleurs délais.'); // Permet un message flash de renvoi
-            
-    
-        return $this->redirectToRoute('index');
-    }
-    */
+  
