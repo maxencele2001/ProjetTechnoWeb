@@ -88,6 +88,21 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/orders", name="restaurant_orders", methods={"GET"}) 
+     */
+    public function orderHistory(Restaurant $restaurant,  OrderRepository $orderRepo, RestaurantRepository $repo): Response
+    {
+        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
+        $orderEncours = $orders[0];
+        $orderLivre = $orders[1];
+        return $this->render('restaurant/order.html.twig', [
+            'restaurant'=>$restaurant,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre,
+        ]);
+    }
+
 
     /**
      * @Route("/{id}/edit", name="restaurant_edit", methods={"GET","POST"})
