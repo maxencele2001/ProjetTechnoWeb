@@ -49,33 +49,12 @@ class CartController extends AbstractController
      */
     public function order(CartService $cartService)
     {
-
-        $cartService->order($this->getUser());
-        $email=$cartService->order($this->getUser());
-        //return $this->redirectToRoute('cart.email');
-        return $this->redirectToRoute('cart.email', array('email' => $email));
-    }
-    /**
-     * @Route("/cart/email", name="cart.email")
-     */
-    public function email( \Swift_Mailer $mailer, $email){
-        //$resto = $this->repoResto->find($this->session->get('resto'));
-        //$email=$resto->getEmail();
-        $info=('test');
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo($email)
-            ->setBody(
-                $this->renderView(
-                    // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    ['info' => $info]
-                ),
-                'text/html'
-            );
-                $mailer->send($message);
-    
-        return $this->redirectToRoute('index');
+        //getRestaurant 
+        //getEmail   
+        //
+        $cartService->order($this->getUser());  
+        return $this->redirectToRoute('homepage');
+        //return $this->redirectToRoute('cart.email', array('email' => $email));
     }
 }
   

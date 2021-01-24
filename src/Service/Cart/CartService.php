@@ -14,8 +14,11 @@ use App\Repository\UserRepository;
 use App\Repository\MailC;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Monolog\Handler\SwiftMailerHandler;
+use Swift;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
 
 class CartService{
     
@@ -25,15 +28,19 @@ class CartService{
     protected $repoUser;
     protected $em;
     public $idResto;
+    private $renderer;
+    private $mailer;
     
 
-    public function __construct(SessionInterface $session, PlatRepository $repoPlat, EntityManagerInterface $em, RestaurantRepository $repoRes, UserRepository $repoUser)
+    public function __construct(SessionInterface $session, PlatRepository $repoPlat, EntityManagerInterface $em, RestaurantRepository $repoRes, UserRepository $repoUser, Environment $renderer, \Swift_Mailer $mailer)
     {
         $this->session = $session;
         $this->repoPlat = $repoPlat;
         $this->em = $em;
         $this->repoRes = $repoRes;
         $this->repoUser = $repoUser;
+        $this->renderer = $renderer;
+        $this->mailer = $mailer;
     }
 
     public function add(Plat $plat)
@@ -95,7 +102,6 @@ class CartService{
     public function order(User $user)
     {
         $resto = $this->repoRes->find($this->session->get('resto'));//penser a find avec un objet
-
         if($user->getBalance()>= $this->getTotal()+2.5)
         {
             $order = new Order();
@@ -120,6 +126,46 @@ class CartService{
                 $this->em->persist($orderQuantity);
             }
             $this->em->flush();
+            $message = (new \Swift_Message('Commande N° ' . $order->getId()))
+                ->setFrom('send@example.com')
+                ->setTo($resto->getEmail())
+                ->setBody(
+                    $this->renderer->render(
+                        // templates/emails/registration.html.twig
+                        'emails/registration.html.twig',
+                        ['id' => $order->getId(),
+                        'adress' => $user->getAddress(),
+                        'total' => $this->getTotal()+2.5,
+                        'items' => $this->getFullCart(),
+                        'time' => $order->getOrderedAt(),
+                        ]
+                    ),
+                    'text/html'
+                );
+            $this->mailer->send($message);
         }
+
+
+        
     }
+    /*
+    public function email(){
+        $resto = $this->repoRes->find($this->session->get('resto'));//penser a find avec un objet
+        $email=$resto->getEmail();
+        $info=('test');
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo($email)
+            ->setBody(
+                $this->renderer->render(
+                    // templates/emails/registration.html.twig
+                    'emails/registration.html.twig',
+                    ['info' => $info]
+                ),
+                'text/html'
+            );
+            $this->mailer->send($message);
+    
+    }
+    */
 }
