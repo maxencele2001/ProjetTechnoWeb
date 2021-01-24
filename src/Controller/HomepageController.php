@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Restaurant;
 use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,11 @@ class HomepageController extends AbstractController
      */
     public function index(RestaurantRepository $repo): Response
     {
-        $restaurants = $repo->findAll();
-        return $this->render('no_admin_restaurant/index.html.twig', [
+        $restaurants = $repo->findTop(Restaurant::NB_HOME);
+        return $this->render('homepage/index.html.twig', [
             'restaurants' => $restaurants,
         ]);
     }
+    
+    
 }
