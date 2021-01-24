@@ -74,16 +74,18 @@
             </div>
 
             <div class="col-md-3 col-sm-4">
-                <div class="wrimagecard wrimagecard-topimage">                
-                    <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1)">
-                        
-                        <h2><center><i class="fas fa-utensils" style="color:#16A085"></i></center></h2>
+                <a href="{{ path('restaurant_index') }}">
+                    <div class="wrimagecard wrimagecard-topimage">                
+                        <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1)">
+                            
+                            <h2><center><i class="fas fa-utensils" style="color:#16A085"></i></center></h2>
+                        </div>
+                        <div class="wrimagecard-topimage_title">
+                            <h4>Nombre de restaurants : {{restaurants | length}}
+                            </h4>
+                        </div>                
                     </div>
-                    <div class="wrimagecard-topimage_title">
-                        <h4>Nombre de restaurants : {{restaurants | length}}
-                        </h4>
-                    </div>                
-                </div>
+                </a>
             </div>
 
              <div class="col-md-3 col-sm-4">

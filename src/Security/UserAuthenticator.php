@@ -102,7 +102,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         $user = $this->security->getUser();
 
         if(in_array("ROLE_ADMIN", $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('restaurant.dashboard'));
+            return new RedirectResponse($this->urlGenerator->generate('admin.dashboard'));
         }
 
         if(in_array("ROLE_RESTAURANT", $user->getRoles())) {
