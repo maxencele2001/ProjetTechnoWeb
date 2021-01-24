@@ -1,0 +1,13 @@
+{# templates/emails/registration.html.twig #}
+<h1>Résumer de votre commande N° {{id}}</h1>
+
+<h2>Ceci est le total de la commande {{ total }} € <h2>
+<h3>Heure : {{ time ? time|date('Y-m-d H:i:s') : '' }}</h3>
+<h3>Adresse de livraison estimée : {{ adress }}</h3>
+{% if items | length > 0 %}
+{% for item in items %}
+                        <h4> name : {{ item.plat.name }}</h4>
+                        <h5> quantity :{{item.quantity}}</h5>
+                        <h5> prix unitaire : {{ item.plat.price }} </h5>
+{% endfor %}
+ {% endif %}
