@@ -8,6 +8,7 @@
         <h1>LE PANIER</h1>
     </div>
     {% if items | length > 0 %}
+    
         <table class="table">
             <thead>
                 <tr>
@@ -19,10 +20,21 @@
             </thead>
             <tbody>
             {% for item in items %}
+            
                 <tr>
                     <td>{{ item.plat.name }}</td>
                     <td>{{ item.plat.price }}</td>
-                    <td>{{ item.quantity }}</td>
+
+                    <td> 
+                        <a href="{{path('cart.rem1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                             {{ item.quantity }}
+                        <a href="{{path('cart.add1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+
                     <td>{{ item.plat.price * item.quantity }}</td>
                     <td>
                         <a href="{{path('cart.remove', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
@@ -31,6 +43,7 @@
                        
                     </td>
                 </tr>
+                
             {% endfor %}
             <a href="{{path('cart.order')}}" class="btn btn-danger btn-sm">order</a>
             </tbody>
