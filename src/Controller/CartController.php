@@ -49,12 +49,8 @@ class CartController extends AbstractController
      */
     public function order(CartService $cartService)
     {
-        //getRestaurant 
-        //getEmail   
-        //
         $cartService->order($this->getUser());  
         return $this->redirectToRoute('homepage');
-        //return $this->redirectToRoute('cart.email', array('email' => $email));
     }
 }
   

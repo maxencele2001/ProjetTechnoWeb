@@ -131,7 +131,6 @@ class CartService{
                 ->setTo($resto->getEmail())
                 ->setBody(
                     $this->renderer->render(
-                        // templates/emails/registration.html.twig
                         'emails/registration.html.twig',
                         ['id' => $order->getId(),
                         'adress' => $user->getAddress(),
@@ -148,24 +147,4 @@ class CartService{
 
         
     }
-    /*
-    public function email(){
-        $resto = $this->repoRes->find($this->session->get('resto'));//penser a find avec un objet
-        $email=$resto->getEmail();
-        $info=('test');
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo($email)
-            ->setBody(
-                $this->renderer->render(
-                    // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    ['info' => $info]
-                ),
-                'text/html'
-            );
-            $this->mailer->send($message);
-    
-    }
-    */
 }
