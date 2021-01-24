@@ -32,7 +32,7 @@
                         <img src="{{ asset('uploads/' ~ restaurant.logo) }}" alt="Illustration of {{restaurant.name}}" class='profil'/>
                         <div class="info">
                             <h3 class="card-title">Nom : {{restaurant.name}}</h3>
-                            <h5>Type : </h5>
+                            <h5>Type : {{restaurant.type.name}} </h5>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -65,12 +65,96 @@
                     </div>
                 </div> 
 
+                <div class="row">
+                    {% for plat in plats %}
+                    <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset('uploads/' ~ plat.image) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{plat.name}}</h5>
+                                <p class="card-text">{{plat.price}}</p>
+                                <p class="card-text">Note: {{plat.notes | length}}</p>
+                                
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">
+                        Aucun plats pour le moment
+                        </div>
+                    {% endfor %}
+                </div>
+          
+            </div>   
+
+            <div class="order">
+            
+
+                
+                    <table class="table">
+                        <thead class="thead" style="background:rgb(252,163,17);">
+                            <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Restaurant</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% for order in orderEncours %}
+                            <tr>
+                            <th scope="row">{{order.id}}</th>
+                            <td>{{order.restaurant}}</td>
+                            <td>{{order.user}}</td>
+                            <td>{{order.priceTotal}}</td>
+                            </tr>
+                            {% else %}
+                                <div class="alert alert-danger" role="alert">
+                                    No records found
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+               
+
+                
+                
+                <table class="table">
+                        <thead class="thead" style="background:rgb(252,163,17);">
+                            <tr>
+                            <th scope="col">Restaurant</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                        {% for order in orderLivre %}
+                            <tr>                       
+                            <td>{{order.restaurant.name}}</td> 
+                            <td>{{order.user.name}}</td>
+                            <td>{{order.priceTotal}}</td>
+                            </tr>
+                            {% else %}
+                                <div class="alert alert-danger" role="alert">
+                                    No records found
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            
             </div>
+           
+            
+
+        </div>
+    </div>
             
             
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}

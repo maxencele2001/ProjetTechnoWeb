@@ -23,39 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RestaurateurController extends AbstractController
 {
-    #Pourquoi pas une page home "/" pour afficher ses stats 
-
-    /**
-     * @Route("/", name="restaurateur.dashboard", methods={"GET"})
-     */
-    public function dashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo)
-    {
-        $restaurants = $repo->getByIdUser($this->getUser());
-        $restaurateur = $userRepo->find($this->getUser());
-        $orderEncours = [];
-        $orderLivre = [];
-        foreach ($restaurants as $restaurant){
-            $resto = $repo->find($restaurant);
-            $orderResto = $orderRepo->findBy(
-                ['restaurant' => $resto]
-            );
-            foreach ($orderResto as $order){
-                if($order->getOrderedAt()< new DateTime()){
-                    $orderLivre[] = $orderRepo->find($order);
-                }else{
-                    $orderEncours[] = $orderRepo->find($order);
-                }
-            }        
-        }
-
-        return $this->render('restaurateur/index.html.twig', [
-            'restaurants' => $restaurants,
-            'orderEncours' => $orderEncours,
-            'orderLivre' => $orderLivre,
-            'restaurateur' => $restaurateur
-        ]); 
-    }
-
+    
 
     ##################### Commandes #############################
 

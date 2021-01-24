@@ -25,36 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RestaurantController extends AbstractController
 {
-    /**
-     * @Route("/", name="restaurant.dashboard", methods={"GET"})
-     */
-    public function dashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo)
-    {
-        $restaurants = $repo->findAll();
-        $restaurateur = $userRepo->find($this->getUser()); // session admin
-        $orderEncours = [];
-        $orderLivre = [];
-        foreach ($restaurants as $restaurant){
-            $resto = $repo->find($restaurant);
-            $orderResto = $orderRepo->findBy(
-                ['restaurant' => $resto]
-            );
-            foreach ($orderResto as $order){
-                if($order->getOrderedAt()< new DateTime()){
-                    $orderLivre[] = $orderRepo->find($order);
-                }else{
-                    $orderEncours[] = $orderRepo->find($order);
-                }
-            }        
-        }
-
-        return $this->render('restaurateur/index.html.twig', [
-            'restaurants' => $restaurants,
-            'orderEncours' => $orderEncours,
-            'orderLivre' => $orderLivre,
-            'restaurateur' => $restaurateur //admin
-        ]); 
-    }
+    
     /**
      * @Route("/all", name="restaurant_index", methods={"GET"})
      */
@@ -103,12 +74,20 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/{id}", name="restaurant_show", methods={"GET"}) 
      */
-    public function show(Restaurant $restaurant): Response
+    public function show(Restaurant $restaurant, PlatRepository $repoPlat,  OrderRepository $orderRepo, RestaurantRepository $repo): Response
     {
+        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
+        $orderEncours = $orders[0];
+        $orderLivre = $orders[1];
+        $plats = $repoPlat->getByID($restaurant->getId());
         return $this->render('restaurant/show.html.twig', [
-            'restaurant' => $restaurant,
+            'plats' => $plats,
+            'restaurant'=>$restaurant,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre,
         ]);
     }
+
 
     /**
      * @Route("/{id}/edit", name="restaurant_edit", methods={"GET","POST"})
@@ -177,41 +156,9 @@ class RestaurantController extends AbstractController
         return $orders;
     }
     
-    /**
-     * @Route("/{id}/order", name="resto.order", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function orderList(RestaurantRepository $repo, OrderRepository $orderRepo, Restaurant $restaurant)
-    {
-        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
-        //$orders = $restaurant->getOrders(); //autre façon de le faire
-        $orders = array_merge($orders[0], $orders[1]);
-        return $this->render('restaurateur/orderList.html.twig', [
-            'orders' => $orders,
-        ]);
-    }
-    /**
-     * @Route("/{id}/order/progress", name="resto.order.progress", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function ProgressList(RestaurantRepository $repo, OrderRepository $orderRepo, Restaurant $restaurant)
-    {
-        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
-        $orderEncours = $orders[0];
-        return $this->render('restaurateur/orderList.html.twig', [
-            'orders' => $orderEncours,
-        ]);
-
-    }
-    /**
-     * @Route("/{id}/order/delivered", name="resto.order.delivered", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function DeliveredList(RestaurantRepository $repo, OrderRepository $orderRepo, Restaurant $restaurant)
-    {
-        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
-        $orderLivre = $orders[1];
-        return $this->render('restaurateur/orderList.html.twig', [
-            'orders' => $orderLivre,
-        ]);
-    }
+    
+    
+   
 
     ##################### Commandes USER #############################
 
@@ -233,31 +180,8 @@ class RestaurantController extends AbstractController
         $orderList = [$orderEncours,$orderLivre];
         return $orderList;
     }
+    
     /**
-     * @Route("/user/{id}/order/progress", name="user.order.progress", methods={"GET"})
-     */
-    public function ProgressListUser(OrderRepository $orderRepo, User $user)
-    {
-        $orders = $this->PREFABorderListUser($orderRepo, $user);
-        $orderEncours = $orders[0];
-        return $this->render('user/orderList.html.twig', [
-            'orders' => $orderEncours,
-        ]);
-
-    }
-
-    /**
-     * @Route("/user/{id}/order/delivered", name="user.order.delivered", methods={"GET"})
-     */
-    public function DeliveredListUser(OrderRepository $orderRepo, User $user)
-    {
-        $orders = $this->PREFABorderListUser($orderRepo, $user);
-        $orderLivre = $orders[1];
-        return $this->render('user/orderList.html.twig', [
-            'orders' => $orderLivre,
-        ]);
-    }
-        /**
      * @Route("/{id}/order/note", name="resto.order.progress", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function Avis(NoteRepository $noteRepo)

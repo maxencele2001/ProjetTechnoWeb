@@ -18,6 +18,7 @@ class DashboardController extends AbstractController
     public function adminDashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo)
     {
         $restaurants = $repo->findAll();
+        $users = $userRepo->findAll();
         $restaurateur = $userRepo->find($this->getUser()); // session admin
         $orderEncours = [];
         $orderLivre = [];
@@ -37,6 +38,7 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/adminDashboard.html.twig', [
             'restaurants' => $restaurants,
+            'users' => $users,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre,
             'restaurateur' => $restaurateur //admin
@@ -75,28 +77,5 @@ class DashboardController extends AbstractController
     }
 
 
-    ##################### Commandes #############################
-
-    public function PREFABorderList(RestaurantRepository $repo, OrderRepository $orderRepo)
-    {
-        $restaurants = $repo->getByIdUser($this->getUser());
-        $orderEncours = [];
-        $orderLivre = [];
-        foreach ($restaurants as $restaurant){
-            $resto = $repo->find($restaurant);
-            $orderResto = $orderRepo->findBy(
-                ['restaurant' => $resto]
-            );
-            foreach ($orderResto as $order){
-                if($order->getOrderedAt()< new DateTime()){
-                    $orderLivre[] = $orderRepo->find($order);
-                }else{
-                    $orderEncours[] = $orderRepo->find($order);
-                }
-            }        
-        }
-        $orders = [$orderEncours,$orderLivre];
-
-        return $orders;
-    }
+    
 }
