@@ -40,10 +40,10 @@
             </div> 
         </div> 
 
-        <div class="d-flex">
+        <div class="row justify-content-around">
           {% for plat in plats %}
 
-          <div class="container">
+          
             <a class="button" href="#popup-{{plat.id}}">
               <figure>
                 <div class="price"><span >{{plat.price}} €</span></div>
@@ -75,9 +75,10 @@
                         {{ include('notation/fourNote.html.twig') }}
                     {% else %}
                         {{ include('notation/fiveNote.html.twig') }}
-                {% endif %}
+                    {% endif %}
 
                   <p>{{plat.price}} €</p>
+
                   {% if app.user %}
                     <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
                    {% else %}
@@ -91,7 +92,7 @@
                 <a class="popup__close" href="#">X</a>
               </div>
             </div>
-          </div> 
+          
           {% else %}
             <div class="alert alert-warning" role="alert">
               Aucun plats pour le moment
