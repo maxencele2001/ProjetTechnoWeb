@@ -1,0 +1,29 @@
+<container>
+                    {{ form_start(form) }}
+                        <div class="d-flex justify-content-between">
+                            {{ form_row(form.name, {
+                                label: 'Nom','attr':{'class': 'form-control','placeholder' :'Nom'}
+                            }) }}
+                            {{ form_row(form.firstName, {
+                                label: 'Prénom','attr':{'class': 'form-control','placeholder' :'Prénom'}
+                            }) }}
+                        </div>
+                        {{ form_row(form.email,  {
+                            label: 'Email','attr':{'class': 'form-control','placeholder' :'Votre Email'}
+                        }) }}                              
+                        {{ form_row(form.address, {
+                            label: 'Adresse','attr':{'class': 'form-control','placeholder' :'Votre Adresse'}
+                        }) }}
+                        <div class="d-flex justify-content-between">
+                            {{ form_row(form.postal_code, { 
+                                label: 'Code Postal',
+                                'attr':{'class': 'form-control','placeholder' :'Code Postal','type':'number',  'maxlength': '5'  }
+                            }) }}
+                            {{ form_row(form.city, {
+                                label: 'Ville','attr':{'class': 'form-control','placeholder' :'Votre ville'}
+                            }) }}
+                        </div>
+                        {{ form_row(form._token) }}
+                        <button type="submit" class="btn">S'enregistrer</button>
+                    {{ form_end(form, {'render_rest': false}) }}
+</container>

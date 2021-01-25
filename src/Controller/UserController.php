@@ -6,9 +6,12 @@ use App\Entity\Note;
 use App\Entity\Plat;
 use App\Entity\User;
 use App\Form\NoteType;
+use App\Form\UserFormType;
 use App\Repository\NoteRepository;
 use App\Repository\OrderRepository;
+use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +20,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    /**
+     * @Route("/profil/", name="profil.show", methods={"GET"}) 
+     */
+    public function show(UserRepository $userRepo): Response
+    {
+        $user=$this->getUser();
+        $user=$userRepo->find($user->getId());
+        return $this->render('user/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    /**
+     * @Route("/profil/edit", name="profil.edit", methods={"GET","POST"})
+     */
+    public function editUser(Request $request, EntityManagerInterface $em, UserRepository $userRepo): Response
+    {
+        $user=$this->getUser();
+        $user=$userRepo->find($user->getId());
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profil.order');
+        }
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     public function PREFABorderList(OrderRepository $orderRepo)
     {
         $orders = $orderRepo->findBy(['user'=>$this->getUser()]);
