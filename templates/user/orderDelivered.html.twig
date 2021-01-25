@@ -21,7 +21,6 @@
         <div class="row">
 
             <div class="col-12 col-md-2">
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.show') }}">Profil</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.edit') }}">Editer le profil</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
@@ -38,6 +37,7 @@
                             <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
                             <div class="restaurant"><b>Restaurant :</b> {{ order.restaurant.name }}</div>
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
+                            <div class="price"><b><button class="btn btn-sm"><a href="{{ path('profil.order.delivered') }}">Voir +</a></btn></div>
                         </div>
                     </div>
                 </div>

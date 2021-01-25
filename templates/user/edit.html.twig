@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editer un profil{% endblock %}
-
+{% block title %}Log in!{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
     <link
@@ -10,22 +9,30 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/admin/adminForm.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/userForm.css') }}" />
 {% endblock %}
-
 {% block body %}
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="d-flex justify-content-between">
-            
-            <div class="col-12">
-              <div class="cart">
-                  {{ include('/user/_form.html.twig', {'button_label': 'Update'}) }}
-              </div>
+
+
+    <div class="container pt-5 mt-5">
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <button type="button" class="btn btn-dark"><a href="{{ path('profil.show') }}">Profil</a></button>
+                <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
+                <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
             </div>
             
+            <div class="col-12 col-md-8">
+              {{ include('/user/_form.html.twig', {'button_label': 'Update'}) }}
+                
+                
+            </div>
+
         </div>
     </div>
-</div>
+
+
+    
+
 {% endblock %}

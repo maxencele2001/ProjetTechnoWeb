@@ -68,7 +68,7 @@ class CartController extends AbstractController
     public function order(CartService $cartService)
     {
         $cartService->order($this->getUser());  
-        return $this->redirectToRoute('profil.order');
+        return $this->redirectToRoute('profil.order.progress');
         
     }
 }

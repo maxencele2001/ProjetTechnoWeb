@@ -46,7 +46,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('profil.order');
+            return $this->redirectToRoute('profil.show');
         }
         return $this->render('user/edit.html.twig', [
             'user' => $user,
@@ -84,11 +84,13 @@ class UserController extends AbstractController
         $orders = array_merge($orders[0], $orders[1]);
         return $this->render('user/orderList.html.twig', [
             'orders' => $orders,
+            'title' => 'Toutes les commandes',
+            'empty' => 'Aucune commande',
         ]);
     }
     
     /**
-     * @Route("/profil/order/progress", name="profil.order.progress", methods={"GET"})
+     * @Route("/profil/orders/progress", name="profil.order.progress", methods={"GET"})
      */
     public function ProgressList(OrderRepository $orderRepo)
     {
@@ -96,6 +98,8 @@ class UserController extends AbstractController
         $orderEncours = $orders[0];
         return $this->render('user/orderList.html.twig', [
             'orders' => $orderEncours,
+            'title' => 'Toutes les commandes en cours',
+            'empty' => 'Aucune commande en cours'
         ]);
 
     }
@@ -107,8 +111,10 @@ class UserController extends AbstractController
     {
         $orders = $this->PREFABorderList($orderRepo);
         $orderLivre = $orders[1];
-        return $this->render('user/orderList.html.twig', [
+        return $this->render('user/orderDelivered.html.twig', [
             'orders' => $orderLivre,
+            'title' => 'Toutes les commandes livrées',
+            'empty' => 'Aucune commande livrées'
         ]);
     }
 

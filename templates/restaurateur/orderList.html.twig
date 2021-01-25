@@ -20,10 +20,9 @@
         <div class="col-12">
 
             <div class="col-12">
-                <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
+                <h1>{{ title }}</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>
                     <li class="breadcrumb-item active">Historique de commande</li>
                 </ol>
             </div>
@@ -43,37 +42,15 @@
             </div>
             {% else %}
             <div class="col-12">
-                <div class="cart">
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                    Aucune commande en cours
+                    {{empty}}
                     </div>
                 </div>
             </div>
             {% endfor %}
     
-            <div class="col-12" >
-                <h2>Historique des commandes</h2>
-                {% for order in orderLivre %}
-                <div class="cart shadow p-3 mb-5 bg-white rounded">
-                    <div class="cart-content p-4">
-                        <div class="d-flex align-items-center">
-                            <div class="id">#{{ order.id }}</div>
-                            <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
-                            <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
-                            <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <div class="col-12">
-                <div class="cart">
-                    <div class="cart-content p-4">
-                    Historqie vide 
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+            
 
         </div>
     </div>
