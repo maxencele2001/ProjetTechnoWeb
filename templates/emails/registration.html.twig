@@ -20,8 +20,8 @@
     {% for item in items %}
     <div class="cart shadow p-3 mb-5 bg-white rounded">
         <div class="cart-content p-4">
-            <div class="d-flex align-items-center">
-                <div>Nom: {{ item.plat.name }}</div>
+            <div class="d-flex justify-content-between">
+                <div><b>Nom : {{ item.plat.name }}</b></div>
                 <div><b>Quantité : {{item.quantity}}</b> </div>
                 <div><b>Prix unitaire : {{ item.plat.price }} </b></div>
             </div>
