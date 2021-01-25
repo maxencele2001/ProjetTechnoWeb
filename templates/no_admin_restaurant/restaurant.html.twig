@@ -41,10 +41,9 @@
         </div> 
 
         <div class="d-flex">
-          
+          {% for plat in plats %}
 
           <div class="container">
-          {% for plat in plats %}
             <a class="button" href="#popup-{{plat.id}}">
               <figure>
                 <div class="price"><span >{{plat.price}} €</span></div>
@@ -55,34 +54,38 @@
               </figure>
             
             </a>
-            
             <div class="popup" id="popup-{{plat.id}}">
               <div class="popup-inner">
                 <div class="popup__photo">
                   <img class="" src="{{ asset('uploads/' ~ plat.image) }}">
                 </div>
                 <div class="popup__text">
-                  <h2>{{plat.name}}</h2>  
-                  {% if  0 < plat.noteMoyenne > 1  %}
+                  <h2>{{plat.name}}</h2>
+                  {% if plat.noteMoyenne == 0  %}
                         {{ include('notation/nullNote.html.twig') }}
-                    {% elseif plat.noteMoyenne  == 1 %}
+                    {% elseif plat.noteMoyenne > 0 and plat.noteMoyenne < 1 %}
+                        {{ include('notation/zeroOneNote.html.twig') }}
+                    {% elseif plat.noteMoyenne >= 1 and plat.noteMoyenne < 2 %}
                         {{ include('notation/oneNote.html.twig') }}
-                    {% elseif plat.noteMoyenne  == 2 %}
+                    {% elseif plat.noteMoyenne >= 2 and plat.noteMoyenne < 3 %}
                         {{ include('notation/twoNote.html.twig') }}
-                    {% elseif plat.noteMoyenne  == 3 %}
+                    {% elseif plat.noteMoyenne >= 3 and plat.noteMoyenne < 4 %}
                         {{ include('notation/threeNote.html.twig') }}
-                   {% elseif plat.noteMoyenne  == 4 %}
+                   {% elseif plat.noteMoyenne >= 4 and plat.noteMoyenne < 5 %}
                         {{ include('notation/fourNote.html.twig') }}
                     {% else %}
                         {{ include('notation/fiveNote.html.twig') }}
                 {% endif %}
 
-                  
-
                   <p>{{plat.price}} €</p>
                   {% if app.user %}
                     <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
-                  
+                   {% else %}
+                   <div class="alert alert-warning" role="alert">
+                    Une faim ? Connectez-vous pour commander !
+                  </div> 
+                    
+                  {% endif %}
                   
                 </div>
                 <a class="popup__close" href="#">X</a>
@@ -93,7 +96,6 @@
             <div class="alert alert-warning" role="alert">
               Aucun plats pour le moment
             </div>
-           {% endif %}
           {% endfor %}
           
         </div>   
@@ -106,4 +108,3 @@
 
 
 {% endblock %}
-
