@@ -124,6 +124,8 @@ class DashboardController extends AbstractController
         $restaurateur = $userRepo->find($this->getUser());
         $orderEncours = [];
         $orderLivre = [];
+        $user=$this->getUser();
+        $user=$userRepo->find($user->getId());
         foreach ($restaurants as $restaurant){
             $resto = $repo->find($restaurant);
             $orderResto = $orderRepo->findBy(
@@ -140,6 +142,7 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/restaurateurDashboard.html.twig', [
             'restaurants' => $restaurants,
+            'user'=> $user,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre,
             'restaurateur' => $restaurateur
