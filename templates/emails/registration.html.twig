@@ -5,7 +5,7 @@
 <h3>Heure de livraison estimée : {{ time ? time|date('Y-m-d H:i:s') : '' }}</h3>
 <h3>Adresse : {{ adress }}</h3>
 {% if items | length > 0 %}
-{% for item in items %}
+{% for item in items %} 
                         <h4> name : {{ item.plat.name }}</h4>
                         <h5> quantity :{{item.quantity}}</h5>
                         <h5> prix unitaire : {{ item.plat.price }} </h5>

@@ -59,7 +59,8 @@
                                 label: 'Ville','attr':{'class': 'form-control','placeholder' :'Votre ville'}
                             }) }}
                         </div>
-                        {{ form_row(registrationForm.roles) }}
+                        {{ form_row(registrationForm.roles, {
+                                label: 'Role','attr':{'class': 'form-control','value' :'Client'} }) }}
                         {{ form_row(registrationForm.agreeTerms) }}
                     
                                 
