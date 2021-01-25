@@ -34,7 +34,7 @@
                     <div class="cart-content p-4">
                         <div class="d-flex align-items-center">
                             <div class="id">#{{ order.id }}</div>
-                            <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
+                            <div class="date"><b>Date :</b> {{ order.orderedAt | date('Y-m-d H:i:s') }}</div>
                             <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="cart-content p-4">
                         <div class="d-flex align-items-center">
                             <div class="id">#{{ order.id }}</div>
-                            <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
+                            <div class="date"><b>Date :</b> {{ order.orderedAt | date('Y-m-d H:i:s') }}</div>
                             <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
                         </div>
