@@ -20,16 +20,15 @@
         <div class="col-12">
 
             <div class="col-12">
-                <h1>Historique de commande</h1> 
+                <h1>{{title}}</h1> 
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>
                     <li class="breadcrumb-item active">Historique de commande</li>
                 </ol>
             </div>
+            {% for order in orders %}
             <div class="col-12" >
-                <h2>{{title}}</h2>
-                {% for order in orders %}
+                
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                         <div class="d-flex align-items-center">
@@ -43,9 +42,9 @@
             </div>
             {% else %}
             <div class="col-12">
-                <div class="cart">
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                    Aucune commande en cours
+                    {{empty}}
                     </div>
                 </div>
             </div>

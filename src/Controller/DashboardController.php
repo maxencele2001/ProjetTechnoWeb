@@ -82,7 +82,8 @@ class DashboardController extends AbstractController
         $orders = array_merge($orders[0], $orders[1]);
         return $this->render('dashboard/orderList.html.twig', [
             'orders' => $orders,
-            'title' => 'Toutes les commandes'
+            'title' => 'Toutes les commandes',
+            'empty' => 'Aucune commande'
         ]);
     }
 
@@ -95,7 +96,8 @@ class DashboardController extends AbstractController
         $orderEncours = $orders[0];
         return $this->render('dashboard/orderList.html.twig', [
             'orders' => $orderEncours,
-            'title' => 'Toutes les commandes en cours'
+            'title' => 'Toutes les commandes en cours',
+            'empty' => 'Aucune commande en cours'
         ]);
 
     }
@@ -108,7 +110,8 @@ class DashboardController extends AbstractController
         $orderLivre = $orders[1];
         return $this->render('dashboard/orderList.html.twig', [
             'orders' => $orderLivre,
-            'title' => 'Toutes les commandes livrées'
+            'title' => 'Toutes les commandes livrées',
+            'empty' => 'Aucune commande en livraison'
         ]);
     }
 
