@@ -61,7 +61,7 @@ class CartController extends AbstractController
         $cartService->remove($id);
         return $this->redirectToRoute('cart.index');
     }
-
+    
     /**
      * @Route("/cart/order", name="cart.order")
      */
@@ -69,6 +69,7 @@ class CartController extends AbstractController
     {
         $cartService->order($this->getUser());  
         return $this->redirectToRoute('profil.order');
+        
     }
 }
   

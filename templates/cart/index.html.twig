@@ -29,6 +29,14 @@
                                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                                     <img class="img-fluid w-100" src="{{ asset('uploads/' ~ item.plat.image) }}" alt="{{ item.plat.name }}">
                                 </div>
+                                <div>
+                        <a href="{{path('cart.rem1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                                    <input class="quantity" readonly min="0" name="quantity" type="number" value={{item.quantity}}>
+                        <a href="{{path('cart.add1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                                 </div>
                                 <div class="col-md-7 col-lg-9 col-xl-9">
                                     <div>
@@ -78,7 +86,45 @@
                         
                         </div>
                     </div>
+<<<<<<< HEAD
             
+=======
+                    <!-- Card -->
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-4">
+
+                    <!-- Card -->
+                    <div class="mb-3">
+                        <div class="pt-4">
+
+                        <h5 class="mb-3">Total</h5>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Coût des plats
+                            <span>{{ total }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Livraison
+                            <span>2,5€</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Coût total</strong>
+                                {# <strong>
+                                <p class="mb-0">(TVA incluse)</p>
+                                </strong> #}
+                            </div>
+                            <span><strong>{{ total + 2.5 }}</strong></span>
+                            </li>
+                        </ul>
+
+                        <button type="button" class="btn btn-primary btn-block"><a href="{{path('cart.order')}}" style="color:white;" >Je commande !</a></button>
+>>>>>>> dashboard
 
                 </div>
                 

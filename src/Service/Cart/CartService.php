@@ -99,6 +99,31 @@ class CartService{
         }
         $this->session->set('panier',$panier);
     }
+    public function add1(Plat $plat)
+    {
+        $panier = $this->session->get('panier', []);
+        $plat->getRestaurants()->getId();
+
+        if(!empty($panier[$plat->getId()])){
+            
+                $panier[$plat->getId()]++;
+        }
+        $this->session->set('panier',$panier); 
+    }
+    public function rem1(Plat $plat, int $id)
+    {
+        $panier = $this->session->get('panier', []);
+        $plat->getRestaurants()->getId();
+
+        if(!empty($panier[$plat->getId()])){
+            
+                $panier[$plat->getId()]--;
+                if(empty($panier[$plat->getId()])){
+                    unset($panier[$id]);
+                }
+        }
+        $this->session->set('panier',$panier); 
+    }
 
     public function getFullCart():array 
     {
@@ -167,6 +192,8 @@ class CartService{
                     'text/html'
                 );
             $this->mailer->send($message);
+            $panier = [];
+            $this->session->set('panier',$panier);
         }
 
 
