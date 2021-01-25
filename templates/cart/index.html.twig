@@ -29,14 +29,6 @@
                                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                                     <img class="img-fluid w-100" src="{{ asset('uploads/' ~ item.plat.image) }}" alt="{{ item.plat.name }}">
                                 </div>
-                                <div>
-                        <a href="{{path('cart.rem1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                                    <input class="quantity" readonly min="0" name="quantity" type="number" value={{item.quantity}}>
-                        <a href="{{path('cart.add1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
                                 </div>
                                 <div class="col-md-7 col-lg-9 col-xl-9">
                                     <div>
@@ -46,28 +38,18 @@
                                             <p class="mb-3 text-muted text-uppercase small">{{ item.plat.price }} €</p>
                                         </div>
                                         <div>
-                                             <p>
-                                                </p><div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                                                            <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-                                                            <span class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                                <p></p>
-                                            {# <div class="def-number-input number-input safari_only mb-0 w-100">
-                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                class="minus decrease"></button>
-                                            <input class="quantity" min="0" name="quantity" value="1" type="number" value={{item.quantity}}>
-                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                class="plus increase"></button>
-                                            </div> #}
+                                             <a href="{{path('cart.rem1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                                </svg>
+                                            </a>
+                                              <input class="quantity" readonly min="0" name="quantity" class="form-control"  value={{item.quantity}}>
+                                            <a href="{{path('cart.add1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                </svg>
+                                            </a>        
+                                            
                                         </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
@@ -86,45 +68,7 @@
                         
                         </div>
                     </div>
-<<<<<<< HEAD
             
-=======
-                    <!-- Card -->
-
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-lg-4">
-
-                    <!-- Card -->
-                    <div class="mb-3">
-                        <div class="pt-4">
-
-                        <h5 class="mb-3">Total</h5>
-
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                            Coût des plats
-                            <span>{{ total }}</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            Livraison
-                            <span>2,5€</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                            <div>
-                                <strong>Coût total</strong>
-                                {# <strong>
-                                <p class="mb-0">(TVA incluse)</p>
-                                </strong> #}
-                            </div>
-                            <span><strong>{{ total + 2.5 }}</strong></span>
-                            </li>
-                        </ul>
-
-                        <button type="button" class="btn btn-primary btn-block"><a href="{{path('cart.order')}}" style="color:white;" >Je commande !</a></button>
->>>>>>> dashboard
 
                 </div>
                 

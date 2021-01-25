@@ -85,6 +85,9 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+
+    
+
     /**
      * @Route("/{id}/orders", name="restaurant_orders", methods={"GET"}) 
      */
@@ -145,6 +148,8 @@ class RestaurantController extends AbstractController
 
         return $this->redirectToRoute('restaurant_index');
     }
+
+
     ##################### Commandes ORDER #############################
     public function PREFABorderList(RestaurantRepository $repo, OrderRepository $orderRepo, Restaurant $restaurant)
     {
@@ -167,7 +172,6 @@ class RestaurantController extends AbstractController
     
         return $orders;
     }
-    
     
     
    
