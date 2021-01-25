@@ -1,0 +1,10 @@
+.date,  .user, .restaurant {
+    flex: 2;
+  }
+  .id, .action {
+    flex: 1;
+  }
+  
+.cart {
+    border-color: black;
+}

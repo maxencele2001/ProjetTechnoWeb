@@ -1,3 +1,17 @@
-<pre>
-    {{ dump(plats) }}
-</pre>
+<div class="row">
+                    {% for plat in plats %}
+                    <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{ asset('uploads/' ~ plat.image) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{plat.name}}</h5>
+                                <p class="card-text">{{plat.price}}</p>
+                                <p class="card-text">Note: {{plat.notes | length}}</p>
+                                
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">
+                        Aucun plats pour le moment
+                        </div>
+                    {% endfor %}
+</div>
