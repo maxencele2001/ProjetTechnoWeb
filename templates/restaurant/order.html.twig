@@ -15,148 +15,68 @@
 
 {% block body %}
 
-<div class="container-fluid pt-5" *ngIf="entity">
-  <div class="row">
-
-    <div class="col-12">
-      <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="">Restaurant</a></li>
-        <li class="breadcrumb-item active">Historique de commande</li>
-      </ol>
-    </div>
-    <div class="col-12" >
-       <h2>Commande en cours</h2>
-      {% for order in orderEncours %}
-        <div class="cart shadow p-3 mb-5 bg-white rounded">
-            <div class="cart-content p-4">
-            <div class="d-flex align-items-center">
-                <div class="id">#{{ order.id }}</div>
-                <div class="lend-date"><b>Date :</b></div>
-                
-                <div class="user">
-                <span>{{ oder.user.firstName }} {{ order.user.lastName }}</span>                
-                </div>
-
-                <div class="project">
-                <span>{{ order.priceTotal }}</span>                
-                </div>
-
-            </div>
-            </div>
-        </div>
-    </div>
-    {% else %}
+<div class="container pt-5">
+    <div class="row">
         <div class="col-12">
-            <div class="cart">
-                <div class="cart-content p-4">
-                Nothing to display..
+
+            <div class="col-12">
+                <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>
+                    <li class="breadcrumb-item active">Historique de commande</li>
+                </ol>
+            </div>
+            <div class="col-12" >
+                <h2>Commande en cours</h2>
+                {% for order in orderEncours %}
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
+                    <div class="cart-content p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="id">#{{ order.id }}</div>
+                            <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
+                            <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
+                            <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-
+            {% else %}
+            <div class="col-12">
+                <div class="cart">
+                    <div class="cart-content p-4">
+                    Aucune commande en cours
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
     
-    <div class="col-12" >
-       <h2>Historique des commandes</h2>
-      {% for order in orderLivre %}
-        <div class="cart shadow p-3 mb-5 bg-white rounded">
-            <div class="cart-content p-4">
-            <div class="d-flex align-items-center">
-                <div class="id">#{{ order.id }}</div>
-                <div class="date"><b>Date :</b> {{ order.ordered_at.date }}</div>
-                
-                <div class="user">
-                {# <span>{{ oder.user.name }} {{ oder.user.firstName }}</span>                 #}
+            <div class="col-12" >
+                <h2>Historique des commandes</h2>
+                {% for order in orderLivre %}
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
+                    <div class="cart-content p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="id">#{{ order.id }}</div>
+                            <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
+                            <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
+                            <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="restaurant">
-                <span>{{ order.priceTotal }}</span>                
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="cart">
+                    <div class="cart-content p-4">
+                    Historqie vide 
+                    </div>
                 </div>
+            </div>
+            {% endfor %}
 
-            </div>
-            </div>
         </div>
     </div>
-    {% else %}
-        <div class="col-12">
-            <div class="cart">
-                <div class="cart-content p-4">
-                Nothing to display..
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-  </div>
 </div>
 
-<pre>
-{{dump(orderLivre)}}
-</pre>
-
-
 {% endblock %}
-
-
-
-
-{# <div class="order">
-            
-
-                
-                    <table class="table">
-                        <thead class="thead" style="background:rgb(252,163,17);">
-                            <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Restaurant</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                        {% for order in orderEncours %}
-                            <tr>
-                            <th scope="row">{{order.id}}</th>
-                            <td>{{order.restaurant}}</td>
-                            <td>{{order.user}}</td>
-                            <td>{{order.priceTotal}}</td>
-                            </tr>
-                            {% else %}
-                                <div class="alert alert-danger" role="alert">
-                                    No records found
-                                </div>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    
-
-                
-                
-                <table class="table">
-                        <thead class="thead" style="background:rgb(252,163,17);">
-                            <tr>
-                            <th scope="col">Restaurant</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                        {% for order in orderLivre %}
-                            <tr>                       
-                            <td>{{order.restaurant.name}}</td> 
-                            <td>{{order.user.name}}</td>
-                            <td>{{order.priceTotal}}</td>
-                            </tr>
-                            {% else %}
-                                <div class="alert alert-danger" role="alert">
-                                    No records found
-                                </div>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-            
-            </div> #}

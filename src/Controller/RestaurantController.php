@@ -74,17 +74,14 @@ class RestaurantController extends AbstractController
     /**
      * @Route("/{id}", name="restaurant_show", methods={"GET"}) 
      */
-    public function show(Restaurant $restaurant, PlatRepository $repoPlat,  OrderRepository $orderRepo, RestaurantRepository $repo): Response
+    public function show(Restaurant $restaurant, PlatRepository $repoPlat): Response
     {
-        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
-        $orderEncours = $orders[0];
-        $orderLivre = $orders[1];
+       
         $plats = $repoPlat->getByID($restaurant->getId());
         return $this->render('restaurant/show.html.twig', [
             'plats' => $plats,
             'restaurant'=>$restaurant,
-            'orderEncours' => $orderEncours,
-            'orderLivre' => $orderLivre,
+            
         ]);
     }
 

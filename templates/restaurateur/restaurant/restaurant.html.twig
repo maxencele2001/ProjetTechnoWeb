@@ -69,65 +69,7 @@
           
             </div>   
 
-            {# <div class="order">
-            
-
-                
-                    <table class="table">
-                        <thead class="thead" style="background:rgb(252,163,17);">
-                            <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Restaurant</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                        {% for order in orderEncours %}
-                            <tr>
-                            <th scope="row">{{order.id}}</th>
-                            <td>{{order.restaurant}}</td>
-                            <td>{{order.user}}</td>
-                            <td>{{order.priceTotal}}</td>
-                            </tr>
-                            {% else %}
-                                <div class="alert alert-danger" role="alert">
-                                    No records found
-                                </div>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    
-
-                
-                
-                <table class="table">
-                        <thead class="thead" style="background:rgb(252,163,17);">
-                            <tr>
-                            <th scope="col">Restaurant</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                        {% for order in orderLivre %}
-                            <tr>                       
-                            <td>{{order.restaurant.name}}</td> 
-                            <td>{{order.user.name}}</td>
-                            <td>{{order.priceTotal}}</td>
-                            </tr>
-                            {% else %}
-                                <div class="alert alert-danger" role="alert">
-                                    No records found
-                                </div>
-                            {% endfor %}
-                        </tbody>
-                    </table> #}
-            
-            {# </div> #}
-           
+        <button class="btn" ><a href="{{ path('restaurateur.orders', {'id': restaurant.id}) }}">Historique de commande</a></button>
             
 
         </div>

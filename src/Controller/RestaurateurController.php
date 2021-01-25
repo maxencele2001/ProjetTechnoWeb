@@ -52,29 +52,23 @@ class RestaurateurController extends AbstractController
 
         
     /**
-     * @Route("/myrestaurants/{id}/order/progress", name="restaurateur.order.progress", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/myrestaurants/{id}/orders", name="restaurateur.orders", methods={"GET"}, requirements={"id"="\d+"})
      */
-    public function ProgressList(RestaurantRepository $repo, OrderRepository $orderRepo)
+    public function orderHistory(Restaurant $restaurant, RestaurantRepository $repo, OrderRepository $orderRepo): Response
     {
-        $orders = $this->PREFABorderList($repo,$orderRepo);
+        $orders = $this->PREFABorderList($repo,$orderRepo, $restaurant);
         $orderEncours = $orders[0];
-        return $this->render('restaurateur/orderList.html.twig', [
-            'orders' => $orderEncours,
-        ]);
-
-    }
-
-    /**
-     * @Route("/myrestaurants/{id}/order/delivered", name="restaurateur.order.delivered", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function DeliveredList(RestaurantRepository $repo, OrderRepository $orderRepo)
-    {
-        $orders = $this->PREFABorderList($repo,$orderRepo);
         $orderLivre = $orders[1];
         return $this->render('restaurateur/orderList.html.twig', [
-            'orders' => $orderLivre,
+            'restaurant' =>$restaurant,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre,
+            
         ]);
+
     }
+   
+      
 
     ##################### Restaurant #############################
 
