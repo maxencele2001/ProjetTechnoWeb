@@ -43,13 +43,31 @@ class CartController extends AbstractController
         $cartService->remove($id);
         return $this->redirectToRoute('cart.index');
     }
+    /**
+     * @Route("/cart/add1/{id}", name="cart.add1")
+     */
+    public function add1(Plat $plat, CartService $cartService)
+    {
+        $cartService->add1($plat);
+        return $this->redirectToRoute('cart.index');
+    }
+
+    /**
+     * @Route("/cart/rem1/{id}", name="cart.rem1")
+     */
+    public function rem1(Plat $plat, CartService $cartService, $id)
+    {
+        $cartService->rem1($plat, $id);
+        return $this->redirectToRoute('cart.index');
+    }
 
     /**
      * @Route("/cart/order", name="cart.order")
      */
     public function order(CartService $cartService)
     {
-        $cartService->order($this->getUser());  
+        $cartService->order($this->getUser());
+          
         return $this->redirectToRoute('homepage');
     }
 }

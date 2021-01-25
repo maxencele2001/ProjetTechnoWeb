@@ -41,13 +41,13 @@
                                     <h5>{{ item.plat.name }}</h5>
                                 </div>
                                 <div>
-                                    <div class="def-number-input number-input safari_only mb-0 w-100">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                        class="minus decrease"></button>
-                                    <input class="quantity" min="0" name="quantity" value="1" type="number" value={{item.quantity}}>
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                        class="plus increase"></button>
-                                    </div>
+                        <a href="{{path('cart.rem1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                                    <input class="quantity" readonly min="0" name="quantity" type="number" value={{item.quantity}}>
+                        <a href="{{path('cart.add1', {'id': item.plat.id})}}" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                                 </div>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -100,7 +100,7 @@
                             </li>
                         </ul>
 
-                        <button type="button" class="btn btn-primary btn-block"><a href="{{path('cart.order')}}" style="color:white;">Je commande !</a></button>
+                        <button type="button" class="btn btn-primary btn-block"><a href="{{path('cart.order')}}" style="color:white;" >Je commande !</a></button>
 
                         </div>
                     </div>
