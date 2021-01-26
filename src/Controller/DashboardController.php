@@ -11,6 +11,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\NoteRepository;
 class DashboardController extends AbstractController
 {
     /**
@@ -158,6 +159,18 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/usersList.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/notes", name="resto_notes", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function Avis(NoteRepository $noteRepo)
+    {
+        $notes = $noteRepo->findAll();  
+        return $this->render('dashboard/notesHistory.html.twig', [
+            'notes' => $notes,
+        ]);
+
     }
     
 }

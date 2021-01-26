@@ -8,11 +8,8 @@ use App\Repository\PlatRepository;
 use App\Entity\Restaurant;
 use App\Entity\User;
 use App\Form\RestaurantType;
-use App\Repository\NoteRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\OrderRepository;
-use App\Repository\UserRepository;
-use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -197,17 +194,7 @@ class RestaurantController extends AbstractController
         return $orderList;
     }
     
-    /**
-     * @Route("/{id}/order/note", name="resto.order.progress", methods={"GET"}, requirements={"id"="\d+"})
-     */
-    public function Avis(NoteRepository $noteRepo)
-    {
-        $notes = $noteRepo->findAll();  
-        return $this->render('restaurateur/noteList.html.twig', [
-            'notes' => $notes,
-        ]);
 
-    }
 
     
 }
