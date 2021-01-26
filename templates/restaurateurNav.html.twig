@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg" style="background-color: rgb(20,33,61);">
+  <a class="navbar-brand" href="{{ path('restaurateur.dashboard') }}">PAKI PAKI</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('restaurateur.restaurant.all') }}">Restaurants</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('app_logout') }}" class="nav-link">Déconnexion</a>
+      </li>
+			
+    </ul>
+    
+  </div>
+</nav>
+<style>
+  .nav-link, .nav-itm, .navbar-brand {
+    color : white;
+  } 
+</style>

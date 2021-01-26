@@ -32,7 +32,7 @@
                 {% for order in orders %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flexjustify-content-between">
                             <div class="id">#{{ order.id }}</div>
                             <div class="date"><b>Date :</b> {{ order.orderedAt | date('Y-m-d H:i:s') }}</div>
                             <div class="restaurant"><b>Restaurant :</b> {{ order.restaurant.name }}</div>
