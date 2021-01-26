@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurants{% endblock %}
+{% block title %}Commandes livrées{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -23,13 +23,13 @@
             <section class="boutton">
                 <div class="col-12 col-md-5">
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.show') }}">Profil</a></button>
+                        <a  class="btn btn-lg btn-outline-warning"href="{{ path('profil.show') }}">Profil</a>
                     </div>
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
+                        <a class="btn btn-lg btn-outline-warning" href="{{ path('profil.order.progress') }}">Commande en cours</a>
                     </div>
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
+                        <a class="btn btn-lg btn-outline-warning" href="{{ path('profil.order.delivered') }}">commandes livrées</a>
                     </div>
                     
                 </div>

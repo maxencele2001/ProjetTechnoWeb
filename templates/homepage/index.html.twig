@@ -36,7 +36,7 @@
           {{ form_start(form) }}
           <div class="recherche" >
               {{ form_row(form.name, {
-                                'attr':{'class': 'form-control','placeholder' :'Nom du resto'}
+                                'attr':{'class': 'search','placeholder' :'Rechercher un restaurant'}
                             }) }}
               <button class="btn-search" >{{ button_label|default('') }}
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -60,7 +60,7 @@
             <div class="opener"><span></span><span></span><span></span></div>
           </div>
           <h2 class="name">{{ restaurant.name }}</h2>
-          <div class="title">{{ restaurant.address }}, {{ restaurant.city }}</div>
+          <div class="title">{{ restaurant.address }}, {{ restaurant.postalCode }} {{ restaurant.city }}</div>
           <div class="desc">{{ restaurant.description|striptags|truncate(150, true)|raw }}</div>
           <div class="actions">
           <a href="{{ path('restaurant.show', {id: restaurant.id}) }}">

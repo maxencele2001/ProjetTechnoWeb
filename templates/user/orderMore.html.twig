@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurants{% endblock %}
+{% block title %}Détails d'une commande{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -10,7 +10,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/orderRecap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -20,22 +20,21 @@
     <div class="container pt-5 mt-5">
         <div class="row">
 
-            <section class="boutton">
-                <div class="col-12 col-md-5">
+             <section class="boutton">
+                <div class="col-12 col-md-4">
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.show') }}">Profil</a></button>
+                        <a  class="btn btn-lg btn-outline-warning"href="{{ path('profil.show') }}">Profil</a>
                     </div>
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
+                        <a class="btn btn-lg btn-outline-warning" href="{{ path('profil.order.progress') }}">Commande en cours</a>
                     </div>
                     <div class="btn-1">
-                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
-                    </div>
-                    
+                        <a class="btn btn-lg btn-outline-warning" href="{{ path('profil.order.delivered') }}">commandes livrées</a>
+                    </div>               
                 </div>
             </section>
             
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-md-9">
                 <h2>Récapitulatif de votre commande | Total: {{orders[0].orders.priceTotal}}€</h2>
                 <div class="row justify-content-around">
                 <div class="col-12 col-md-12">
@@ -53,7 +52,7 @@
                                         <div>
                                             <h5>{{ order.plats.name }}</h5>
                                             <p class="mb-3 text-muted text-uppercase small">{{ order.plats.price }} €</p>
-                                            <button type="button" class="btn btn-sm btn-outline-warning"><a class="btn" href="{{ path('cart.add', {id: order.plats.id}) }}" role="button">Recommander</a></button>
+                                            <button type="b" class=" btn-sm btn-outline-warning"><a href="{{ path('cart.add', {id: order.plats.id}) }}" role="button">Recommander</a></button>
                                         </div>
                                         <span class="vertical-line"></span>
                                         <div>

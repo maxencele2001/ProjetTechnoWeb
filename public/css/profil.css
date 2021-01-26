@@ -16,12 +16,7 @@ img {
 .btn {
     width : 200px;
 }
-a {
-    color: rgb(20,33,61);
-}
-a:hover {
-    color: rgb(252,163,17);
-}
+
 .btn-1 {
     margin: 1em;
     margin-bottom: 1em;
