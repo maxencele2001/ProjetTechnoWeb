@@ -22,3 +22,20 @@ img {
     margin-bottom: 1em;
 
 }
+/* OrderMore page */
+.vertical-line{
+    border-left: 2px solid #000;
+    display: inline-block;
+    height: 130px;
+    margin: 0 20px;
+  }
+
+  
+h3 {
+    font-size: 25x;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+    -webkit-text-stroke: 2px;
+    color: rgb(20,33,61) ;
+}

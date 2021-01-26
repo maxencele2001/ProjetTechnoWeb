@@ -35,7 +35,7 @@
             </section>
             
             <div class="col-12 col-md-9">
-                <h2>Récapitulatif de votre commande | Total: {{orders[0].orders.priceTotal}}€</h2>
+                <h3>Récapitulatif de votre commande | Total: {{orders[0].orders.priceTotal}}€</h3>
                 <div class="row justify-content-around">
                 <div class="col-12 col-md-12">
 
@@ -52,16 +52,17 @@
                                         <div>
                                             <h5>{{ order.plats.name }}</h5>
                                             <p class="mb-3 text-muted text-uppercase small">{{ order.plats.price }} €</p>
-                                            <button type="b" class=" btn-sm btn-outline-warning"><a href="{{ path('cart.add', {id: order.plats.id}) }}" role="button">Recommander</a></button>
+                                            <a class="btn btn-sm btn-outline-warning" href="{{ path('cart.add', {id: order.plats.id}) }}" role="button">Recommander</a>
                                         </div>
                                         <span class="vertical-line"></span>
                                         <div>
                                             <h4>Récapitulatif : </h4>
                                             <p class="mb-3 text-muted text-uppercase small">Quantité : {{order.quantity}}</p>
                                             <p class="mb-3 text-muted text-uppercase small">Total : {{order.plats.price * order.quantity}}€</p>
+                                            
                                         </div>
                                         <div>
-                                            <button class="btn btn-outline-warning"><a class="btn" href="{{ path('profil.order.note', {order: order.orders.id ,plat: order.plats.id}) }}" role="button">Noter</a></button>                                                                                        
+                                            <a style="width:150px;" class="btn btn-sm btn-outline-warning" href="{{ path('profil.order.note', {order: order.orders.id ,plat: order.plats.id}) }}" role="button">Noter</a>                                                                                        
                                         </div>
                                         </div>
                                         
