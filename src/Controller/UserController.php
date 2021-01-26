@@ -212,7 +212,7 @@ class UserController extends AbstractController
                     $plat->setNoteMoyenne($noteMoyenne);
                     $em->flush();
                     
-                    return $this->redirectToRoute('profil.order');
+                    return $this->redirectToRoute('profil.order.delivered');
                 }
                 return $this->render('user/newNote.html.twig',[
                     'plat' => $plat,
