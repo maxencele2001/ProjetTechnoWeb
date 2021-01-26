@@ -19,7 +19,7 @@
         <div class="col-12">
 
             <div class="col-12">
-                <h1>Historique de commande</h1>
+                <h1>Historique de commandes</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="{{ path('users_index') }}">Liste des utilisateurs</a></li>
@@ -27,7 +27,7 @@
                 </ol>
             </div>
             <div class="col-12" >
-                <h2>Commande en cours</h2>
+                <h2>Commandes en cours</h2>
                 {% for order in orderEncours %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
@@ -46,9 +46,7 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
 
-             <div class="col-12" >
                 <h2>Commandes livrées</h2>
     
                 {% for order in orderLivre %}
@@ -63,16 +61,16 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="col-12">
                     <div class="cart shadow p-3 mb-5 bg-white rounded">
                         <div class="cart-content p-4">
                         Aucune commande livrée
                         </div>
                     </div>
-                </div>
+                
                 {% endfor %}
             </div>
-            
+
+        
     
             
 

@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\NoteRepository;
 use App\Entity\User;
+use App\Form\UserFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 class DashboardController extends AbstractController
 {
     /**
@@ -195,6 +198,24 @@ class DashboardController extends AbstractController
             'orders' => $orders,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre,
+        ]);
+    }
+
+     /**
+     * @Route("/profil/{id}/edit", name="admin.profil.edit", methods={"GET","POST"})
+     */
+    public function adminEditUser(Request $request, EntityManagerInterface $em, User $user): Response
+    {
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('users_index');
+        }
+        return $this->render('dashboard/userEdit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
