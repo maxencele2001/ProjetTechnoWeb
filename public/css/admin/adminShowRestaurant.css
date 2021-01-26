@@ -8,14 +8,18 @@
 .info {
   margin-left: 10px;
 }
-.btn {
-  background-color: rgb(20,33,61) ;
-  margin-right: 0.5em;
-}
+
 
 thead {
   color:white;
 }
 .order {
    margin: 1em;
+}
+a {
+  color:white;
+}
+.btn {
+  background-color: rgb(252,163,17);
+  color:white;  
 }

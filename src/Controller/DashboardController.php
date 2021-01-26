@@ -16,16 +16,18 @@ use App\Entity\User;
 use App\Form\UserFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PlatRepository;
 class DashboardController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin.dashboard", methods={"GET"})
      */
-    public function adminDashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo, TypeRepository $typeRepo)
+    public function adminDashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo, TypeRepository $typeRepo, PlatRepository $platRepository)
     {
         $types = $typeRepo->findAll();
         $restaurants = $repo->findAll();
         $users = $userRepo->findAll();
+        $plats = $platRepository->findAll();
         $restaurateur = $userRepo->find($this->getUser()); // session admin
         $orderEncours = [];
         $orderLivre = [];
@@ -47,6 +49,7 @@ class DashboardController extends AbstractController
             'restaurants' => $restaurants,
             'users' => $users,
             'types' => $types,
+            'plats' => $plats,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre,
             'restaurateur' => $restaurateur //admin
@@ -78,7 +81,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/order", name="dashboard.order", methods={"GET"})
+     * @Route("/admin/order", name="dashboard.order", methods={"GET"})
      */
     public function orderList(RestaurantRepository $repo, OrderRepository $orderRepo)
     {
@@ -93,7 +96,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/order/progress", name="dashboard.order.progress", methods={"GET"})
+     * @Route("/admin/order/progress", name="dashboard.order.progress", methods={"GET"})
      */
     public function ProgressList(RestaurantRepository $repo, OrderRepository $orderRepo )
     {
@@ -107,7 +110,7 @@ class DashboardController extends AbstractController
 
     }
     /**
-     * @Route("/order/delivered", name="dashboard.order.delivered", methods={"GET"})
+     * @Route("/admin/order/delivered", name="dashboard.order.delivered", methods={"GET"})
      */
     public function DeliveredList(RestaurantRepository $repo, OrderRepository $orderRepo )
     {
@@ -156,7 +159,7 @@ class DashboardController extends AbstractController
 
 
     /**
-     * @Route("/users", name="users_index", methods={"GET"})
+     * @Route("/admin/users", name="users_index", methods={"GET"})
      */
     public function users(UserRepository $userRepository): Response
     {
@@ -187,7 +190,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="user_history", methods={"GET"})
+     * @Route("/admin/user/{id}", name="user_history", methods={"GET"})
      */
     public function userHistory(OrderRepository $orderRepo, User $user)
     {
@@ -202,7 +205,7 @@ class DashboardController extends AbstractController
     }
 
      /**
-     * @Route("/profil/{id}/edit", name="admin.profil.edit", methods={"GET","POST"})
+     * @Route("/admin/profil/{id}/edit", name="admin.profil.edit", methods={"GET","POST"})
      */
     public function adminEditUser(Request $request, EntityManagerInterface $em, User $user): Response
     {
@@ -222,7 +225,7 @@ class DashboardController extends AbstractController
 
     
     /**
-     * @Route("/notes", name="resto_notes", methods={"GET"}, requirements={"id"="\d+"})
+     * @Route("/admin/notes", name="resto_notes", methods={"GET"}, requirements={"id"="\d+"})
      */
     public function Avis(NoteRepository $noteRepo)
     {

@@ -20,7 +20,7 @@
             <h1>Plat : {{plat.id}}</h1>
             
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bords</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
                 <li class="breadcrumb-item"><a href="{{ path('plat_index') }}">Liste des Plats</a></li>
                 <li class="breadcrumb-item active">Plat {{plat.id}}</li>
             </ol>
@@ -34,7 +34,22 @@
                     <div class="col-md-10">
                         <div class="card-body">
                             <h3 class="card-title">Nom : {{plat.name}}</h3>
-                            <h5 class="card-text">Notation: {{plat.noteMoyenne}}/5 </h5>
+                            {% if plat.noteMoyenne == 0  %}
+                                {{ include('notation/nullNote.html.twig') }}
+                            {% elseif plat.noteMoyenne > 0 and plat.noteMoyenne < 1 %}
+                                {{ include('notation/zeroOneNote.html.twig') }}
+                            {% elseif plat.noteMoyenne >= 1 and plat.noteMoyenne < 2 %}
+                                {{ include('notation/oneNote.html.twig') }}
+                            {% elseif plat.noteMoyenne >= 2 and plat.noteMoyenne < 3 %}
+                                {{ include('notation/twoNote.html.twig') }}
+                            {% elseif plat.noteMoyenne >= 3 and plat.noteMoyenne < 4 %}
+                                {{ include('notation/threeNote.html.twig') }}
+                            {% elseif plat.noteMoyenne >= 4 and plat.noteMoyenne < 5 %}
+                                {{ include('notation/fourNote.html.twig') }}
+                            {% else %}
+                                {{ include('notation/fiveNote.html.twig') }}
+                            {% endif %} 
+                            
                             <h5 class="card-text">Prix : {{plat.price}} €</h5>
                             <div class="d-flex">
                             <button class="btn">

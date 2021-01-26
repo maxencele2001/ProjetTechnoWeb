@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Editer un utilisateur{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
     <link
@@ -22,7 +22,7 @@
             </div>
             
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bords</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
                 <li class="breadcrumb-item"><a href="{{ path('users_index') }}">Liste des utilisateurs</a></li>
                 <li class="breadcrumb-item active">Editer l'utilisateur</li>
             </ol>

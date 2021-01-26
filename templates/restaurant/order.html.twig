@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurants{% endblock %}
+{% block title %}Commandes{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -21,8 +21,9 @@
             <div class="col-12">
                 <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de bord</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurant_index') }}">Liste des Restaurants</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>                    
                     <li class="breadcrumb-item active">Historique de commande</li>
                 </ol>
             </div>
@@ -39,9 +40,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-12">
+            
+                {% else %}
+            
                 <div class="cart">
                     <div class="cart-content p-4">
                     Aucune commande en cours
@@ -52,7 +53,9 @@
     
             <div class="col-12" >
                 <h2>Historique des commandes</h2>
+
                 {% for order in orderLivre %}
+                
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                         <div class="d-flex justify-content-around">
@@ -63,9 +66,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-12">
+            
+               {% else %}      
+
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                     Historqie vide 

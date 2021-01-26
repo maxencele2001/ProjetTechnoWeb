@@ -22,7 +22,7 @@
     </p>
     <div class="d-flex justify-content-around">
         <a href="{{ path('restaurateur.plat.edit', {'restaurant': restaurant.id, 'plat': plat.id}) }}" class="btn btn-primary">Editer</a>
-        {# {{ include('restaurateur/plat/_delete_form.html.twig') }} #}
+        {{ include('restaurateur/plat/_delete_form.html.twig') }}
      </div>
   </div>
 </div>

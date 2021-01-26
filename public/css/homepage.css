@@ -49,12 +49,13 @@ a, h3 {
     width: 500px;
 }
 .btn-search {
-    background-color:rgb(20,33,61) ;
+    background-color:rgb(20, 56, 61) ;
     border-radius: 50px;
     border-color:transparent;
     height: 60px;
     width: 60px;
     margin-left: 0.5em;
+    
 }
 svg {
     color: #fff;

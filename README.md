@@ -7,7 +7,7 @@
 Projet d'étude de deuxième année de Bachelor | Informatique Ingésup du Campus YNOV Lyon.
 Ce projet permet l’évaluation des compétences acquises grâce aux modules de l’UF « Technologies Web ».
 
-Projet web Deliveroo : création d’un site de commande et livrison de repas
+Projet web Deliveroo : création d’un site de commandes et livraisons de repas
 
 Son aboutissement est un site web :
 Dynamique
@@ -71,6 +71,6 @@ Ce qu'il est requis pour commencer c'est d'avoir le fichier .sql. Ce site est re
 
 ## GitHub
 
-ce projet est disponible sur GitHub
+Ce projet est disponible sur GitHub
 
 * [Dépot](https://github.com/maxencele2001/ProjetTechnoWeb.git)

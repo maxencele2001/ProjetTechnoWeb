@@ -20,11 +20,20 @@
     <div class="container pt-5 mt-5">
         <div class="row">
 
-            <div class="col-12 col-md-2">
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.show') }}">Profil</a></button>
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
-            </div>
+            <section class="boutton">
+                <div class="col-12 col-md-5">
+                    <div class="btn-1">
+                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.show') }}">Profil</a></button>
+                    </div>
+                    <div class="btn-1">
+                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
+                    </div>
+                    <div class="btn-1">
+                        <button type="button" class="btn btn-lg btn-outline-warning"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
+                    </div>
+                    
+                </div>
+            </section>
             
             <div class="col-12 col-md-10">
                 <h2>Récapitulatif de votre commande | Total: {{orders[0].orders.priceTotal}}€</h2>
