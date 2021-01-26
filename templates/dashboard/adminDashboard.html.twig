@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bords{% endblock %}
+{% block title %}Tableau de bord{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -57,7 +57,7 @@
                             <center><i class="fa fa-shopping-cart" style="color:#3369e8"></i></center>
                         </div>
                         <div class="wrimagecard-topimage_title">
-                            <h4>Commande en cours : {{orderEncours | length }} 
+                            <h4>Commandes en cours : {{orderEncours | length }} 
                             <div class="pull-right badge" id="WrThemesIcons"></div></h4>
                         </div>
                     </a>
@@ -71,7 +71,7 @@
                             <center><i class="fa fa-shopping-cart" style="color:#3369e8"></i></center>
                         </div>
                         <div class="wrimagecard-topimage_title">
-                            <h4>Commande livré : {{orderLivre | length }} 
+                            <h4>Commandes livrées : {{orderLivre | length }} 
                             <div class="pull-right badge" id="WrThemesIcons"></div></h4>
                         </div>
                     </a>
@@ -107,12 +107,12 @@
 
             <div class="col-md-3 col-sm-4">
                 <div class="wrimagecard wrimagecard-topimage">
-                    <a href="">
+                    <a href="{{ path('type_index') }}">
                         <div class="wrimagecard-topimage_header" style="background-color: rgba(130, 93, 9, 0.1)">
                             <center><i class="fa fa-align-justify" style="color:#825d09"></i></center>
                         </div>
                         <div class="wrimagecard-topimage_title">
-                            <h4>Nombre de type : {{types | length}}
+                            <h4>Nombre de types : {{types | length}}
                             <div class="pull-right badge" id="WrThemesIcons"></div></h4>
                         </div>
                     </a>

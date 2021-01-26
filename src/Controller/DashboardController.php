@@ -73,7 +73,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/order", name="dashboard.order", methods={"GET"})
+     * @Route("/admin/order", name="dashboard.order", methods={"GET"})
      */
     public function orderList(RestaurantRepository $repo, OrderRepository $orderRepo)
     {
@@ -88,7 +88,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/order/progress", name="dashboard.order.progress", methods={"GET"})
+     * @Route("/admin/order/progress", name="dashboard.order.progress", methods={"GET"})
      */
     public function ProgressList(RestaurantRepository $repo, OrderRepository $orderRepo )
     {
@@ -102,7 +102,7 @@ class DashboardController extends AbstractController
 
     }
     /**
-     * @Route("/order/delivered", name="dashboard.order.delivered", methods={"GET"})
+     * @Route("/admin/order/delivered", name="dashboard.order.delivered", methods={"GET"})
      */
     public function DeliveredList(RestaurantRepository $repo, OrderRepository $orderRepo )
     {
