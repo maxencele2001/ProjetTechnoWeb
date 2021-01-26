@@ -43,8 +43,8 @@
                         <div class="col col-2" data-label="Nom">{{ user.name }} {{ user.firstNAme }}</div>
                         <div class="col col-3" data-label="Email">{{ user.email }}</div>
                         <div class="col col-4" data-label="Ville">{{ user.city }}</div>
-                        <div class="col col-5" data-label="Ville">
-                        <button type="button" class="btn btn-warning"><a  class="btn btn-warning" href="">Historique</a></button>
+                        <div class="col col-5" data-label="more">
+                        <button type="button" class="btn btn-sm btn-warning"><a class="btn btn-warning" href="{{ path('user_history', {id: user.id}) }}">Historique</a></button>
                         </div>
                         
                         </li>

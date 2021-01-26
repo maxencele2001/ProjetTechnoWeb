@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\NoteRepository;
+use App\Entity\User;
 class DashboardController extends AbstractController
 {
     /**
@@ -161,6 +162,44 @@ class DashboardController extends AbstractController
         ]);
     }
 
+    ##################### Commandes USER #############################
+
+    public function PREFABorderListUser(OrderRepository $orderRepo, User $user)
+    {
+        $orders = $orderRepo->findBy(['user'=> $user]);
+        $orderList = [];
+        $orderEncours = [];
+        $orderLivre = [];
+        foreach($orders as $order)
+        {
+            if($order->getOrderedAt()< new DateTime()){
+                $orderLivre[] = $orderRepo->find($order);
+            }else{
+                $orderEncours[] = $orderRepo->find($order);
+            }
+        }
+
+        $orderList = [$orderEncours,$orderLivre];
+        return $orderList;
+    }
+
+    /**
+     * @Route("/user/{id}", name="user_history", methods={"GET"})
+     */
+    public function userHistory(OrderRepository $orderRepo, User $user)
+    {
+        $orders = $this->PREFABorderListUser($orderRepo, $user);
+        $orderEncours = $orders[0];
+        $orderLivre = $orders[1];
+        return $this->render('dashboard/userHistory.html.twig', [
+            'orders' => $orders,
+            'orderEncours' => $orderEncours,
+            'orderLivre' => $orderLivre,
+        ]);
+    }
+
+
+    
     /**
      * @Route("/notes", name="resto_notes", methods={"GET"}, requirements={"id"="\d+"})
      */
