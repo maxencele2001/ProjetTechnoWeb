@@ -60,9 +60,11 @@
           <div class="title">{{ restaurant.address }}, {{ restaurant.city }}</div>
           <div class="desc">{{ restaurant.description|striptags|truncate(150, true)|raw }}</div>
           <div class="actions">
+          <a href="{{ path('restaurant.show', {id: restaurant.id}) }}">
             <div class="follow-btn">
               <button>Voir</button>
             </div>
+          </a>
           </div>
         </div>
         {% endfor %}
