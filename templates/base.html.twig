@@ -14,6 +14,10 @@
   </head>
   <header>
 
+    {% if app.user == null or 'ROLE_USER' in app.user.roles %}
+			 {{ include('nav.html.twig') }}
+		{% endif %}
+
     {% if app.user %}
 
       {% if 'ROLE_ADMIN' in app.user.roles %}
@@ -24,10 +28,7 @@
         {{ include('restaurateurNav.html.twig') }}
       {% endif %}
 
-    {% if 'ROLE_USER' in app.user.roles %}
-         {{ include('nav.html.twig') }}
     {% endif %}
-  {% endif %}
       
   </header>
   <body>
