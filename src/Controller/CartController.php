@@ -3,10 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
-use App\Entity\Restaurant;
-use App\Entity\User;
-use App\Repository\RestaurantRepository;
-use App\Repository\UserRepository;
+
 use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
