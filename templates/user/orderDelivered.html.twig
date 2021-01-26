@@ -22,7 +22,6 @@
 
             <div class="col-12 col-md-2">
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.show') }}">Profil</a></button>
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.edit') }}">Editer le profil</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
             </div>
@@ -33,25 +32,26 @@
                 {% for order in orders %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-between">
                             <div class="id">#{{ order.id }}</div>
                             <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
                             <div class="restaurant"><b>Restaurant :</b> {{ order.restaurant.name }}</div>
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
-                            <div class="price"><b><button class="btn btn-sm"><a href="{{ path('profil.order.delivered') }}">Voir +</a></btn></div>
+                            <a class="btn btn-outline-warning" style="margin-left:1em;" href="{{ path('profil.order.show', {id: order.id}) }}">Details</a>                            
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-12">
-                <div class="cart shadow p-3 mb-5 bg-white rounded">
-                    <div class="cart-content p-4">
-                    {{empty}}
+            
+                {% else %}
+                <div class="col-12">
+                    <div class="cart shadow p-3 mb-5 bg-white rounded">
+                        <div class="cart-content p-4">
+                        {{empty}}
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
                 
 
                 

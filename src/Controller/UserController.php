@@ -84,7 +84,7 @@ class UserController extends AbstractController
         $orders = array_merge($orders[0], $orders[1]);
         return $this->render('user/orderList.html.twig', [
             'orders' => $orders,
-            'title' => 'Toutes les commandes',
+            'title' => 'Toutes vos commandes',
             'empty' => 'Aucune commande',
         ]);
     }
@@ -98,7 +98,7 @@ class UserController extends AbstractController
         $orderEncours = $orders[0];
         return $this->render('user/orderList.html.twig', [
             'orders' => $orderEncours,
-            'title' => 'Toutes les commandes en cours',
+            'title' => 'Vos commandes en cours',
             'empty' => 'Aucune commande en cours'
         ]);
 
@@ -113,13 +113,13 @@ class UserController extends AbstractController
         $orderLivre = $orders[1];
         return $this->render('user/orderDelivered.html.twig', [
             'orders' => $orderLivre,
-            'title' => 'Toutes les commandes livrées',
+            'title' => 'Vos commandes livrées',
             'empty' => 'Aucune commande livrées'
         ]);
     }
 
     /**
-     * @Route("/profil/order/delivered/{order}", name="profil.order.show", methods={"GET"})
+     * @Route("/profil/order/delivered/{id}", name="profil.order.show", methods={"GET"})
      */
     public function showOrder(Order $order, OrderQuantityRepository $repo)
     {

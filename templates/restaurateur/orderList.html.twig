@@ -10,7 +10,6 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/admin/adminRestaurantHistory.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -31,7 +30,7 @@
                 {% for order in orderEncours %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-around">
                             <div class="id">#{{ order.id }}</div>
                             <div class="date"><b>Date :</b> {{ order.orderedAt | date('Y-m-d H:i:s') }}</div>
                             <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>

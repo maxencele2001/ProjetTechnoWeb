@@ -22,7 +22,6 @@
 
             <div class="col-12 col-md-2">
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.show') }}">Profil</a></button>
-                <button type="button" class="btn btn-dark"><a href="{{ path('profil.edit') }}">Editer le profil</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.progress') }}">Commande en cours</a></button>
                 <button type="button" class="btn btn-dark"><a href="{{ path('profil.order.delivered') }}">commandes livrées</a></button>
             </div>
@@ -41,16 +40,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-12">
-                <div class="cart shadow p-3 mb-5 bg-white rounded">
-                    <div class="cart-content p-4">
-                    {{empty}}
+                {% else %}
+                <div class="col-12">
+                    <div class="cart shadow p-3 mb-5 bg-white rounded">
+                        <div class="cart-content p-4">
+                        {{empty}}
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
+            </div>
+            
                 
 
                 

@@ -109,7 +109,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
             return new RedirectResponse($this->urlGenerator->generate('restaurateur.dashboard'));
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+        return new RedirectResponse($this->urlGenerator->generate('profil.show"'));
         # throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

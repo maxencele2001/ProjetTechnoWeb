@@ -31,7 +31,7 @@
                 
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-around">
                             <div class="id">#{{ order.id }}</div>
                             <div class="date"><b>Date :</b> {{ order.orderedAt | date("m/d/Y") }}</div>
                             <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
