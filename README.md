@@ -42,7 +42,7 @@ Ce qu'il est requis pour commencer c'est d'avoir le fichier .sql. Ce site est re
    ```sh
    git clone https://github.com/maxencele2001/ProjetTechnoWeb
    ```
-2. Installer les dépendences
+2. Installer les dépendances
    ```sh
    composer install
    ```
