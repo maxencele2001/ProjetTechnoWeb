@@ -40,10 +40,10 @@
             </div> 
         </div> 
 
-        <div class="d-flex">
+        <div class="row justify-content-around">
           {% for plat in plats %}
 
-          <div class="container">
+          
             <a class="button" href="#popup-{{plat.id}}">
               <figure>
                 <div class="price"><span >{{plat.price}} €</span></div>
@@ -52,7 +52,6 @@
                                         
                 </figcaption>
               </figure>
-            
             </a>
             <div class="popup" id="popup-{{plat.id}}">
               <div class="popup-inner">
@@ -61,19 +60,38 @@
                 </div>
                 <div class="popup__text">
                   <h2>{{plat.name}}</h2>
-                  <p>{{plat.price}} €</p>
-                  {# {% if app.user %} #}
-                    <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
-                  {# {% else %}
-                    
+                  {% if plat.noteMoyenne == 0  %}
+                        {{ include('notation/nullNote.html.twig') }}
+                    {% elseif plat.noteMoyenne > 0 and plat.noteMoyenne < 1 %}
+                        {{ include('notation/zeroOneNote.html.twig') }}
+                    {% elseif plat.noteMoyenne >= 1 and plat.noteMoyenne < 2 %}
+                        {{ include('notation/oneNote.html.twig') }}
+                    {% elseif plat.noteMoyenne >= 2 and plat.noteMoyenne < 3 %}
+                        {{ include('notation/twoNote.html.twig') }}
+                    {% elseif plat.noteMoyenne >= 3 and plat.noteMoyenne < 4 %}
+                        {{ include('notation/threeNote.html.twig') }}
+                   {% elseif plat.noteMoyenne >= 4 and plat.noteMoyenne < 5 %}
+                        {{ include('notation/fourNote.html.twig') }}
+                    {% else %}
+                        {{ include('notation/fiveNote.html.twig') }}
+                    {% endif %}
 
-                  {% endif %} #}
+                  <p>{{plat.price}} €</p>
+
+                  {% if app.user %}
+                    <a class="btn btnmodal" href="{{ path('cart.add', {id: plat.id}) }}">Ajouter au panier</a>
+                   {% else %}
+                   <div class="alert alert-warning" role="alert">
+                    Une faim ? Connectez-vous pour commander !
+                  </div> 
+                    
+                  {% endif %}
                   
                 </div>
                 <a class="popup__close" href="#">X</a>
               </div>
             </div>
-          </div> 
+          
           {% else %}
             <div class="alert alert-warning" role="alert">
               Aucun plats pour le moment
@@ -90,4 +108,3 @@
 
 
 {% endblock %}
-

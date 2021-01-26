@@ -20,7 +20,7 @@
             <h1>Plat : {{plat.id}}</h1>
             
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Tableau de Bords</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bords</a></li>
                 <li class="breadcrumb-item"><a href="{{ path('plat_index') }}">Liste des Plats</a></li>
                 <li class="breadcrumb-item active">Plat {{plat.id}}</li>
             </ol>
@@ -34,6 +34,7 @@
                     <div class="col-md-10">
                         <div class="card-body">
                             <h3 class="card-title">Nom : {{plat.name}}</h3>
+                            <h5 class="card-text">Notation: {{plat.noteMoyenne}}/5 </h5>
                             <h5 class="card-text">Prix : {{plat.price}} €</h5>
                             <div class="d-flex">
                             <button class="btn">

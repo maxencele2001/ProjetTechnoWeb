@@ -8,10 +8,13 @@ use App\Entity\OrderQuantity;
 use App\Entity\Plat;
 use App\Entity\User;
 use App\Form\NoteType;
+use App\Form\UserFormType;
 use App\Repository\NoteRepository;
 use App\Repository\OrderQuantityRepository;
 use App\Repository\OrderRepository;
+use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +23,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    /**
+     * @Route("/profil/", name="profil.show", methods={"GET"}) 
+     */
+    public function show(UserRepository $userRepo): Response
+    {
+        $user=$this->getUser();
+        $user=$userRepo->find($user->getId());
+        return $this->render('user/profil.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    /**
+     * @Route("/profil/edit", name="profil.edit", methods={"GET","POST"})
+     */
+    public function editUser(Request $request, EntityManagerInterface $em, UserRepository $userRepo): Response
+    {
+        $user=$this->getUser();
+        $user=$userRepo->find($user->getId());
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profil.show');
+        }
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     public function PREFABorderList(OrderRepository $orderRepo)
     {
         $orders = $orderRepo->findBy(['user'=>$this->getUser()]);
@@ -49,11 +84,13 @@ class UserController extends AbstractController
         $orders = array_merge($orders[0], $orders[1]);
         return $this->render('user/orderList.html.twig', [
             'orders' => $orders,
+            'title' => 'Toutes vos commandes',
+            'empty' => 'Aucune commande',
         ]);
     }
     
     /**
-     * @Route("/profil/order/progress", name="profil.order.progress", methods={"GET"})
+     * @Route("/profil/orders/progress", name="profil.order.progress", methods={"GET"})
      */
     public function ProgressList(OrderRepository $orderRepo)
     {
@@ -61,6 +98,8 @@ class UserController extends AbstractController
         $orderEncours = $orders[0];
         return $this->render('user/orderList.html.twig', [
             'orders' => $orderEncours,
+            'title' => 'Vos commandes en cours',
+            'empty' => 'Aucune commande en cours'
         ]);
 
     }
@@ -72,13 +111,15 @@ class UserController extends AbstractController
     {
         $orders = $this->PREFABorderList($orderRepo);
         $orderLivre = $orders[1];
-        return $this->render('user/orderList.html.twig', [
+        return $this->render('user/orderDelivered.html.twig', [
             'orders' => $orderLivre,
+            'title' => 'Vos commandes livrées',
+            'empty' => 'Aucune commande livrées'
         ]);
     }
 
     /**
-     * @Route("/profil/order/delivered/{order}", name="profil.order.show", methods={"GET"})
+     * @Route("/profil/order/delivered/{id}", name="profil.order.show", methods={"GET"})
      */
     public function showOrder(Order $order, OrderQuantityRepository $repo)
     {

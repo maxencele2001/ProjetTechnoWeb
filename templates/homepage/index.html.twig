@@ -22,7 +22,7 @@
         <section>
           <div class="d-flex justify-content-between">
             <div class="home-cta">
-              <h1>PAKI PAKI</h1>
+              <img src="{{ asset('img/logo.png') }}" style="width:100px;">
             </div>
             <div class="login">
               <button class="arrondi" type="button">
@@ -47,7 +47,7 @@
       </figcaption>
       <h3>Les derniers ajouts !</h3>
 
-      <div class="new d-flex justify-content-around">
+      <div class="row justify-content-around">
       {% for restaurant in restaurants %}
         <div class="card">
           <div class="banner">

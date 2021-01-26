@@ -36,14 +36,6 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/cart/remove/{id}", name="cart.remove")
-     */
-    public function remove($id,CartService $cartService)
-    {
-        $cartService->remove($id);
-        return $this->redirectToRoute('cart.index');
-    }
-    /**
      * @Route("/cart/add1/{id}", name="cart.add1")
      */
     public function add1(Plat $plat, CartService $cartService)
@@ -62,13 +54,22 @@ class CartController extends AbstractController
     }
 
     /**
+     * @Route("/cart/remove/{id}", name="cart.remove")
+     */
+    public function remove($id,CartService $cartService)
+    {
+        $cartService->remove($id);
+        return $this->redirectToRoute('cart.index');
+    }
+    
+    /**
      * @Route("/cart/order", name="cart.order")
      */
     public function order(CartService $cartService)
     {
-        $cartService->order($this->getUser());
-          
-        return $this->redirectToRoute('homepage');
+        $cartService->order($this->getUser());  
+        return $this->redirectToRoute('profil.order.progress');
+        
     }
 }
   

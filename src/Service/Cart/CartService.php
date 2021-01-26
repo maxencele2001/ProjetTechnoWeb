@@ -64,16 +64,6 @@ class CartService{
         }
         $this->session->set('panier',$panier);
     }
-
-    public function remove(int $id)
-    {
-        $panier = $this->session->get('panier', []);
-
-        if(!empty($panier[$id])){
-            unset($panier[$id]);
-        }
-        $this->session->set('panier',$panier);
-    }
     public function add1(Plat $plat)
     {
         $panier = $this->session->get('panier', []);
@@ -99,6 +89,17 @@ class CartService{
         }
         $this->session->set('panier',$panier); 
     }
+   
+    public function remove(int $id)
+    {
+        $panier = $this->session->get('panier', []);
+
+        if(!empty($panier[$id])){
+            unset($panier[$id]);
+        }
+        $this->session->set('panier',$panier);
+    }
+
 
     public function getFullCart():array 
     {
