@@ -10,7 +10,7 @@ use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\HttpFoundation\Response;
 class DashboardController extends AbstractController
 {
     /**
@@ -150,5 +150,14 @@ class DashboardController extends AbstractController
     }
 
 
+    /**
+     * @Route("/users", name="users_index", methods={"GET"})
+     */
+    public function users(UserRepository $userRepository): Response
+    {
+        return $this->render('dashboard/usersList.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
     
 }
