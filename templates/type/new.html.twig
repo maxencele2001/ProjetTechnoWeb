@@ -14,25 +14,25 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="container pt-5">
         <div class="row">
             <div class="col-12">
+
                 <h1>Ajouter un type</h1>
                 
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
                     <li class="breadcrumb-item"><a href="{{ path('type_index') }}">Liste des Types</a></li>
                     <li class="breadcrumb-item active">Ajouter un nouveau type</li>
-                </ol>
-                </div>
-                
-                <div class="col-12">
+                </ol>               
+                                
                 <div class="cart">
                     {{ include('type/_form.html.twig') }}
-                </div>
-                </div>
+                </div>                
                 
             </div>
         </div>
     </div>
+
 {% endblock %}

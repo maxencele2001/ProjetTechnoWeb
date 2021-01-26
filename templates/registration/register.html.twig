@@ -18,20 +18,19 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-
-
-
-<div class="container pt-1 mt-5">
+    <div class="container pt-1 mt-5">
         <div class="row">
 
             <div class="col-12 col-md-6">
+
                 <h1>Créer un compte</h1>
-                    <p class="login-welcome-message">
-                        Bienvenue ! Inscrivez-vous dès maintenant<br/>
-                    </p>
+                <p class="login-welcome-message">
+                    Bienvenue ! Inscrivez-vous dès maintenant<br/>
+                </p>
 
                 <container>
                     {{ form_start(registrationForm) }}
+
                         <div class="d-flex justify-content-between">
                             {{ form_row(registrationForm.name, {
                                 label: 'Nom','attr':{'class': 'form-control','placeholder' :'Nom'}
@@ -40,9 +39,11 @@
                                 label: 'Prénom','attr':{'class': 'form-control','placeholder' :'Prénom'}
                             }) }}
                         </div>
+
                         {{ form_row(registrationForm.email,  {
                             label: 'Email','attr':{'class': 'form-control','placeholder' :'Votre Email'}
                         }) }}
+
                         {{ form_row(registrationForm.plainPassword, {
                             label: 'Password','attr':{'class': 'form-control','placeholder' :'Entrez votre Mot de Passe'}
                         }) }}
@@ -50,6 +51,7 @@
                         {{ form_row(registrationForm.address, {
                             label: 'Adresse','attr':{'class': 'form-control','placeholder' :'Votre Adresse'}
                         }) }}
+
                         <div class="d-flex justify-content-between">
                             {{ form_row(registrationForm.postal_code, { 
                                 label: 'Code Postal',
@@ -59,22 +61,22 @@
                                 label: 'Ville','attr':{'class': 'form-control','placeholder' :'Votre ville'}
                             }) }}
                         </div>
-                        {{ form_row(registrationForm.roles) }}
-                        {{ form_row(registrationForm.agreeTerms) }}
-                    
-                                
-                        
 
+                        {{ form_row(registrationForm.roles) }}
+
+                        {{ form_row(registrationForm.agreeTerms) }}                      
+                                
                         <button type="submit" class="btn">S'enregistrer</button>
+                        
                     {{ form_end(registrationForm) }}
                 </container>
-            </div>
-            <div class="col-12 col-md-6">
 
+            </div>
+
+            <div class="col-12 col-md-6">
                 <div class="d-flex align-items-center login-illustration">
                         <img src="../img/registration.jpg">
-                </div>
-                
+                </div>                    
             </div>
 
         </div>

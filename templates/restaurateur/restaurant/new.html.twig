@@ -15,25 +15,23 @@
 
 {% block body %}
 
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <h1>Ajouter un restaurant</h1>
-            
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Tableau de Bords</a></li>
-                <li class="breadcrumb-item"><a href="{{ path('restaurateur.restaurant.all') }}">Liste de mes restaurants</a></li>
-                <li class="breadcrumb-item active">Ajouter un nouveau restaurant</li>
-            </ol>
-            </div>
-            
+    <div class="container pt-5">
+        <div class="row">
             <div class="col-12">
-              <div class="cart">
-                 {{ include('restaurateur/restaurant/_form.html.twig') }}
-              </div>
+
+                <h1>Ajouter un restaurant</h1>            
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.restaurant.all') }}">Liste de mes Restaurants</a></li>
+                    <li class="breadcrumb-item active">Ajouter un nouveau restaurant</li>
+                </ol>
+                
+                <div class="cart">
+                    {{ include('restaurateur/restaurant/_form.html.twig') }}
+                </div>
+                
             </div>
-            
         </div>
     </div>
-</div>
+    
 {% endblock %}

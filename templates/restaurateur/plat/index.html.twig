@@ -1,28 +1,27 @@
 <div class="card col-md-3">
-  <img class="card-img-top" src="{{ asset('uploads/' ~ plat.image) }}" alt="{{plat.name}}" style="height:200px;">
-  <div class="card-body">
-    <h5 class="card-title">{{plat.name}} | {{plat.price}}€</h5>
-    <p class="card-text">
-    {% if plat.noteMoyenne == 0  %}
-                        {{ include('notation/nullNote.html.twig') }}
-                    {% elseif plat.noteMoyenne > 0 and plat.noteMoyenne < 1 %}
-                        {{ include('notation/zeroOneNote.html.twig') }}
-                    {% elseif plat.noteMoyenne >= 1 and plat.noteMoyenne < 2 %}
-                        {{ include('notation/oneNote.html.twig') }}
-                    {% elseif plat.noteMoyenne >= 2 and plat.noteMoyenne < 3 %}
-                        {{ include('notation/twoNote.html.twig') }}
-                    {% elseif plat.noteMoyenne >= 3 and plat.noteMoyenne < 4 %}
-                        {{ include('notation/threeNote.html.twig') }}
-                   {% elseif plat.noteMoyenne >= 4 and plat.noteMoyenne < 5 %}
-                        {{ include('notation/fourNote.html.twig') }}
-                    {% else %}
-                        {{ include('notation/fiveNote.html.twig') }}
-                    {% endif %}
-    
-    </p>
-    <div class="d-flex justify-content-around">
-        <a href="{{ path('restaurateur.plat.edit', {'restaurant': restaurant.id, 'plat': plat.id}) }}" class="btn btn-primary">Editer</a>
-        {{ include('restaurateur/plat/_delete_form.html.twig') }}
-     </div>
-  </div>
+    <img class="card-img-top" src="{{ asset('uploads/' ~ plat.image) }}" alt="{{plat.name}}" style="height:200px;">
+    <div class="card-body">
+        <h5 class="card-title">{{plat.name}} | {{plat.price}}€</h5>
+        <p class="card-text">
+        {% if plat.noteMoyenne == 0  %}
+            {{ include('notation/nullNote.html.twig') }}
+        {% elseif plat.noteMoyenne > 0 and plat.noteMoyenne < 1 %}
+            {{ include('notation/zeroOneNote.html.twig') }}
+        {% elseif plat.noteMoyenne >= 1 and plat.noteMoyenne < 2 %}
+            {{ include('notation/oneNote.html.twig') }}
+        {% elseif plat.noteMoyenne >= 2 and plat.noteMoyenne < 3 %}
+            {{ include('notation/twoNote.html.twig') }}
+        {% elseif plat.noteMoyenne >= 3 and plat.noteMoyenne < 4 %}
+            {{ include('notation/threeNote.html.twig') }}
+         {% elseif plat.noteMoyenne >= 4 and plat.noteMoyenne < 5 %}
+            {{ include('notation/fourNote.html.twig') }}
+        {% else %}
+            {{ include('notation/fiveNote.html.twig') }}
+        {% endif %}        
+        </p>
+        <div class="d-flex justify-content-around">
+            <a href="{{ path('restaurateur.plat.edit', {'restaurant': restaurant.id, 'plat': plat.id}) }}" class="btn btn-primary">Editer</a>
+            {{ include('restaurateur/plat/_delete_form.html.twig') }}
+        </div>
+    </div>
 </div>

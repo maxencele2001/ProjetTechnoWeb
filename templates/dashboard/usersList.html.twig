@@ -13,55 +13,51 @@
 {% endblock %}
 
 {% block body %}
+
 <div class="container pt-5">
     <div class="row">
         <div class="col-12">
-
             
            <h1>Liste des utilisateurs</h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
                 <li class="breadcrumb-item active">Liste des utilisateurs</li>
             </ol>
-            </div>
-            
-            <div class="col-12">
-              <div class="cart">
+           
+            <div class="cart">
 
-                <div class="contai">
+                <div class="contain">
                     <ul class="responsive-table">
                         <li class="table-header">
-                        <div class="col col-1">Id</div>
-                        <div class="col col-2">Nom</div>
-                        <div class="col col-3">Email</div>
-                        <div class="col col-4">Ville</div>
-                        <div class="col col-4">Commandes</div>
+                            <div class="col col-1">Id</div>
+                            <div class="col col-2">Nom</div>
+                            <div class="col col-3">Email</div>
+                            <div class="col col-4">Ville</div>
+                            <div class="col col-4">Commandes</div>
                         </li>
                         {% for user in users %}
                         <li class="table-row">
-                        <div class="col col-1" data-label="Id">{{ user.id }}</div>
-                        <div class="col col-2" data-label="Nom">{{ user.name }} {{ user.firstNAme }}</div>
-                        <div class="col col-3" data-label="Email">{{ user.email }}</div>
-                        <div class="col col-4" data-label="Ville">{{ user.city }}</div>
-                        <div class="col col-5" data-label="more">
-                            <div class="d-flex justify-content-around">
-                                <button type="button" class="btn btn-sm btn-warning"><a class="btn btn-warning" href="{{ path('user_history', {id: user.id}) }}">Historique</a></button>
-                                <button type="button" class="btn btn-sm btn-warning"><a class="btn btn-warning" href="{{ path('admin.profil.edit', {id: user.id}) }}">Editer</a></button>
-                            </div>
-                        </div>
-                        
+                            <div class="col col-1" data-label="Id">{{ user.id }}</div>
+                            <div class="col col-2" data-label="Nom">{{ user.name }} {{ user.firstNAme }}</div>
+                            <div class="col col-3" data-label="Email">{{ user.email }}</div>
+                            <div class="col col-4" data-label="Ville">{{ user.city }}</div>
+                            <div class="col col-5" data-label="more">
+                                <div class="d-flex justify-content-around">
+                                    <button type="button" class="btn btn-sm btn-warning"><a class="btn btn-warning" href="{{ path('user_history', {id: user.id}) }}">Historique</a></button>
+                                    <button type="button" class="btn btn-sm btn-warning"><a class="btn btn-warning" href="{{ path('admin.profil.edit', {id: user.id}) }}">Editer</a></button>
+                                </div>
+                            </div>                    
                         </li>
                         {% else %}
                             <div class="alert alert-danger" role="alert">
-                                 Aucun utilisateur
+                                Aucun utilisateur
                             </div>
                         {% endfor %}
                     </ul>
                 </div>
 
-
-              </div>
             </div>
+
             
         </div>
     </div>

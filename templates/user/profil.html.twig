@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Votre profil{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
     <link
@@ -11,13 +12,14 @@
     />
     <link rel="stylesheet" href="{{ asset('css/profil.css') }}" />
 {% endblock %}
-{% block body %}
 
+{% block body %}
 
     <div class="container pt-5 mt-5">
         <div class="row">
 
             <section class="recherche">
+
                 <section class="boutton">
                     <div class="col-12 col-md-5">
                         <div class="btn-1">
@@ -32,7 +34,9 @@
                         
                     </div>
                 </section>
+
                 <div class="col-6 col-md-7">
+                    <h3>Mon profil : </h3>
                     <div class="row shadow p-3 mb-5 bg-white rounded">
                         <div class="col-sm-2 col-md-3">
                             <img src="../img/user-profile.png"  alt="" class="img-rounded img-responsive" />
@@ -46,16 +50,12 @@
                                 /> <i class="glyphicon glyphicon-globe"></i> Balance : {{user.balance}}
                                 </p>
                         </div>
-                    </div>
-
-                    
-                    
+                    </div>                                  
                 </div>
+
             </section>
 
         </div>
     </div>
-
-    
 
 {% endblock %}

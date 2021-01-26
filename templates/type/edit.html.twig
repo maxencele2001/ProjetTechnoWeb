@@ -15,28 +15,27 @@
 
 {% block body %}
 
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="d-flex justify-content-between">
-                <h1>Editer type : {{type.id}}</h1>
-                {{ include('type/_delete_form.html.twig') }}
-            </div>
-            
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
-                <li class="breadcrumb-item"><a href="{{ path('type_index') }}">Liste des Types</a></li>
-                <li class="breadcrumb-item active">Editer type {{type.id}}</li>
-            </ol>
-            </div>
-            
+    <div class="container pt-5">
+        <div class="row">
             <div class="col-12">
-              <div class="cart">
-                 {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
-              </div>
-            </div>
             
+                <div class="d-flex justify-content-between">
+                    <h1>Editer type : {{type.id}}</h1>
+                    {{ include('type/_delete_form.html.twig') }}
+                </div>
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('type_index') }}">Liste des Types</a></li>
+                    <li class="breadcrumb-item active">Editer type {{type.id}}</li>
+                </ol>                              
+                
+                <div class="cart">
+                    {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
+                </div>                
+                
+            </div>
         </div>
     </div>
-</div>
+
 {% endblock %}

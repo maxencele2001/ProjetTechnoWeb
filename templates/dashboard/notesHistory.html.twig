@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Restaurants{% endblock %}
+{% block title %}Historique de notes{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -10,48 +10,41 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{{ asset('css/admin/adminRestaurantHistory.css') }}" />
 {% endblock %}
 
 {% block body %}
 
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-
+    <div class="container pt-5">
+        <div class="row">
             <div class="col-12">
+                
                 <h1>Historique de note</h1> 
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de bord</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Tableau de Bord</a></li>
                     <li class="breadcrumb-item active">Historique de notes</li>
                 </ol>
-            </div>
-            {% for note in notes %}
-            <div class="col-12" >
-                
-                <div class="cart shadow p-3 mb-5 bg-white rounded">
-                    <div class="cart-content p-4">
-                        <div class="d-flex justify-content-around">
-                            <div class="id">#{{ note.id }}</div>
-                            <div class="date"><b>Note :</b> {{ note.note }}</div>
-                            <div class="user"><b>User :</b> {{ note.user.name }} {{ note.user.firstName }}</div>
-                            <div class="price"><b>Plat :</b> {{ note.plats.name}} ( id: {{ note.plats.id }} )</div>
+            
+                {% for note in notes %}           
+                    <div class="cart shadow p-3 mb-5 bg-white rounded">
+                        <div class="cart-content p-4">
+                            <div class="d-flex justify-content-around">
+                                <div class="id">#{{ note.id }}</div>
+                                <div class="date"><b>Note :</b> {{ note.note }}</div>
+                                <div class="user"><b>User :</b> {{ note.user.name }} {{ note.user.firstName }}</div>
+                                <div class="price"><b>Plat :</b> {{ note.plats.name}} ( id: {{ note.plats.id }} )</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>            
+                {% else %}            
+                    <div class="cart shadow p-3 mb-5 bg-white rounded">
+                        <div class="cart-content p-4">
+                            Aucune note 
+                        </div>
+                    </div>         
+                {% endfor %}
+        
             </div>
-            {% else %}
-            <div class="col-12">
-                <div class="cart shadow p-3 mb-5 bg-white rounded">
-                    <div class="cart-content p-4">
-                    Aucune note 
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-    
         </div>
     </div>
-</div>
 
 {% endblock %}

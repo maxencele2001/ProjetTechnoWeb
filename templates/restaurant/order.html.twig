@@ -17,19 +17,17 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-12">
-
-            <div class="col-12">
-                <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de bord</a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('restaurant_index') }}">Liste des Restaurants</a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>                    
-                    <li class="breadcrumb-item active">Historique de commande</li>
-                </ol>
-            </div>
-            <div class="col-12" >
-                <h2>Commande en cours</h2>
-                {% for order in orderEncours %}
+                
+            <h1>Historique de commande du restaurant : {{ restaurant.name }}</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de bord</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('restaurant_index') }}">Liste des Restaurants</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Restaurant</a></li>                    
+                <li class="breadcrumb-item active">Historique de commande</li>
+            </ol>
+            
+            <h2>Commande en cours</h2>
+            {% for order in orderEncours %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                         <div class="d-flex justify-content-around">
@@ -39,23 +37,17 @@
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
                         </div>
                     </div>
-                </div>
-            
-                {% else %}
-            
+                </div>        
+            {% else %}        
                 <div class="cart">
                     <div class="cart-content p-4">
                     Aucune commande en cours
                     </div>
                 </div>
-            </div>
             {% endfor %}
-    
-            <div class="col-12" >
-                <h2>Historique des commandes</h2>
-
-                {% for order in orderLivre %}
-                
+            
+            <h2>Historique des commandes</h2>
+            {% for order in orderLivre %}                
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                         <div class="d-flex justify-content-around">
@@ -65,16 +57,13 @@
                             <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
                         </div>
                     </div>
-                </div>
-            
-               {% else %}      
-
+                </div>            
+               {% else %}  
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
                     Historqie vide 
                     </div>
                 </div>
-            </div>
             {% endfor %}
 
         </div>

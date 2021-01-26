@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
     <link
@@ -11,8 +12,8 @@
     />
     <link rel="stylesheet" href="{{ asset('css/userForm.css') }}" />
 {% endblock %}
-{% block body %}
 
+{% block body %}
 
     <div class="container pt-5 mt-5">
         <div class="row">
@@ -22,6 +23,7 @@
                     <img src="../img/login.jpg">
                 </div>
             </div>
+
             <div class="col-12 col-md-6">
 
                 <h1>Connexion</h1>
@@ -30,6 +32,7 @@
                 </p>
 
                 <form method="post">
+                
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
@@ -61,14 +64,12 @@
                             <strong>Hey!</strong> Vous n'avez pas de compte ? <a href="{{ path('app_register') }}" class="alert-link">cliquez ici !</a>
                         </div>
                     </div>
+
                 </form>
                 
             </div>
 
         </div>
-    </div>
-
-
-    
+    </div>    
 
 {% endblock %}

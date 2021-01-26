@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de mes restaurants{% endblock %}
+{% block title %}Liste de mes Restaurants{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
@@ -16,61 +16,50 @@
 
 {% block body %}
 <main>
-<div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-12">
 
-            <div class="d-flex justify-content-between">
-                <h1>Liste des Restaurants</h1>
-                <button class="btn" style="background-color: rgb(20,33,61);">
-                        <a href="{{ path('restaurateur.restaurant.new') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" style="color:white;">
-                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
+                <div class="d-flex justify-content-between">
+                    <h1>Liste des Restaurants</h1>
+                    <button class="btn" style="background-color: rgb(20,33,61);">
+                            <a href="{{ path('restaurateur.restaurant.new') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" style="color:white;">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </a>
+                    </button>
+                </div>
+
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de Bord</a></li>
+                    <li class="breadcrumb-item active">Liste de mes Restaurants</li>
+                </ol>
+                </div>
+                
+                <div class="container">
+
+                    {% for restaurant in restaurants %}
+                        <a class="btn" href="{{ path('restaurateur.restaurant.one', {id: restaurant.id}) }}" role="button">                    
+                            <div class="content">
+                                <div class="card">
+                                    <div class="firstinfo"><img src="{{ asset('uploads/' ~ restaurant.logo) }}"/>
+                                    <div class="profileinfo">
+                                        <h1>{{ restaurant.name }}</h1>
+                                        <h3>{{ restaurant.address }}, {{ restaurant.postalCode }} {{ restaurant.city }}</h3>
+                                        <p class="bio">{{ restaurant.description|striptags|truncate(55, true)|raw }} </p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>                
                         </a>
-                </button>
-            </div>
-
-            
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de Bords</a></li>
-                <li class="breadcrumb-item active">Liste de mes restaurants</li>
-            </ol>
-            </div>
-            
-            <div class="container">
-
+                    {% endfor %}
                 
-              {% for restaurant in restaurants %}
+                </div>
                 
-
-                <a class="btn" href="{{ path('restaurateur.restaurant.one', {id: restaurant.id}) }}" role="button">
-
-            
-                    <div class="content">
-                        <div class="card">
-                            <div class="firstinfo"><img src="{{ asset('uploads/' ~ restaurant.logo) }}"/>
-                            <div class="profileinfo">
-                                <h1>{{ restaurant.name }}</h1>
-                                <h3>{{ restaurant.address }}, {{ restaurant.postalCode }} {{ restaurant.city }}</h3>
-                                <p class="bio">{{ restaurant.description|striptags|truncate(55, true)|raw }} </p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                </a>
-  
-               {% endfor %}
-
-
-
-              
             </div>
-            
         </div>
     </div>
-</div>
 
 </main>
     
