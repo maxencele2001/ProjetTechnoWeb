@@ -53,8 +53,24 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
+    /**
+     * @Route("admin/profil/{id}/edit", name="admin.profil.edit", methods={"GET","POST"})
+     */
+    public function adminEditUser(Request $request, EntityManagerInterface $em, User $user): Response
+    {
+        $form = $this->createForm(UserFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('profil.show');
+        }
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+    
     public function PREFABorderList(OrderRepository $orderRepo)
     {
         $orders = $orderRepo->findBy(['user'=>$this->getUser()]);

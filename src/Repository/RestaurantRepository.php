@@ -20,7 +20,13 @@ class RestaurantRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Restaurant::class);
     }
-
+    public function search($name) {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%')
+            ->getQuery()
+            ->execute();
+    }
     public function getByType(Type $type)
     {
         return $this->createQueryBuilder('r')
@@ -50,7 +56,6 @@ class RestaurantRepository extends ServiceEntityRepository
 
     public function findTop(int $number)
   {
-
     $qb = $this->createQueryBuilder('a')
         ->orderBy('a.id', 'DESC')
         ->setMaxResults($number);
