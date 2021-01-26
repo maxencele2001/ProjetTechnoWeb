@@ -16,13 +16,17 @@
   <header>
 
     {% if app.user %}
+
       {% if 'ROLE_ADMIN' in app.user.roles %}
         {{ include('adminNav.html.twig') }}
-      {% elseif 'ROLE_RESTAURANT' in app.user.roles %}
-        {{ include('restaurateurNav.html.twig') }}
-      {% else %}
-         {{ include('nav.html.twig') }}
       {% endif %}
+
+      {% if 'ROLE_RESTAURANT' in app.user.roles %}
+        {{ include('restaurateurNav.html.twig') }}
+      {% endif %}
+
+    {% else %}
+         {{ include('nav.html.twig') }}
     {% endif %}
       
   </header>

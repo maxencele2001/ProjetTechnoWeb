@@ -207,7 +207,7 @@ class RestaurateurController extends AbstractController
             'plat' => $plat
             ]);
         }else{
-            return $this->redirectToRoute('restaurateur.plat.all', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurateur.restaurant.one', ['id' => $restaurant->getId()]);
         }
     }
 
@@ -240,7 +240,7 @@ class RestaurateurController extends AbstractController
             $em->persist($plat);
             $em->flush();
             
-            return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);//changer et mettre la liste des plats
+            return $this->redirectToRoute('restaurateur.restaurant.one',['id' => $idRestaurant]);//changer et mettre la liste des plats
         }
 
         return $this->render('restaurateur/plat/new.html.twig', [
@@ -286,7 +286,7 @@ class RestaurateurController extends AbstractController
                 $em->persist($plat);
                 $em->flush();
 
-                return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);
+                return $this->redirectToRoute('restaurateur.restaurant.one',['id' => $idRestaurant]);
             }
 
             return $this->render('restaurateur/plat/edit.html.twig', [
@@ -296,12 +296,12 @@ class RestaurateurController extends AbstractController
                 'idPlat' => $idPlat
             ]);
             }else{
-                return $this->redirectToRoute('restaurateur.plat.all', ['id' => $restaurant->getId()]);
+                return $this->redirectToRoute('restaurateur.restaurant.one', ['id' => $restaurant->getId()]);
             }
     }
 
     /**
-     * @Route("/myrestaurants/{restaurant}/plats/{plat}", name="restaurateur.plat.delete", methods={"DELETE"})
+     * @Route("/myrestaurants/{id}/plats/{plat}", name="restaurateur.plat.delete", methods={"DELETE"})
      */
     public function deletePlat(Request $request,Restaurant $restaurant, Plat $plat): Response
     {
@@ -323,9 +323,9 @@ class RestaurateurController extends AbstractController
             $entityManager->remove($plat);
             $entityManager->flush();
             }
-            return $this->redirectToRoute('restaurateur.plat.all',['id' => $idRestaurant]);
+            return $this->redirectToRoute('restaurateur.restaurant.one',['id' => $idRestaurant]);
         }else{
-            return $this->redirectToRoute('restaurateur.plat.all', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurateur.restaurant.one', ['id' => $restaurant->getId()]);
         }
     }
 }

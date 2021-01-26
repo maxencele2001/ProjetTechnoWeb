@@ -26,6 +26,8 @@
                     <img src="{{ asset('uploads/' ~ restaurant.logo) }}" alt="Illustration of {{restaurant.name}}" class='profil'/>
                     <div class="info">
                         <h1 class="card-title">{{restaurant.name}}</h1>
+                        <h5>Type : {{restaurant.type.name}} </h5>
+
                         <p style="text-align: justify;">{{ restaurant.address }}  {{ restaurant.postalCode }},  {{ restaurant.city }}</p>
                     </div>
                 </div>
@@ -48,6 +50,7 @@
               <figure>
                 <div class="price"><span >{{plat.price}} €</span></div>
                 <figcaption>
+                  <p></br></p>
                   <img class="imgPlat" src="{{ asset('uploads/' ~ plat.image) }}">
                                         
                 </figcaption>
