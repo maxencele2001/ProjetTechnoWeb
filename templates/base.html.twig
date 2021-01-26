@@ -25,9 +25,10 @@
         {{ include('restaurateurNav.html.twig') }}
       {% endif %}
 
-    {% else %}
+    {% if 'ROLE_USER' in app.user.roles %}
          {{ include('nav.html.twig') }}
     {% endif %}
+  {% endif %}
       
   </header>
   <body>

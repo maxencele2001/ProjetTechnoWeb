@@ -114,7 +114,7 @@ class UserController extends AbstractController
         return $this->render('user/orderDelivered.html.twig', [
             'orders' => $orderLivre,
             'title' => 'Vos commandes livrées',
-            'empty' => 'Aucune commande livrées'
+            'empty' => 'Aucune commande livrée'
         ]);
     }
 

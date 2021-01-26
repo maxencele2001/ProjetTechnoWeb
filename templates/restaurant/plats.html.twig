@@ -1,6 +1,4 @@
-
-
-<div class="card" style="width: 8rem;">
+<div class="card col-md-3">
   <img class="card-img-top" src="{{ asset('uploads/' ~ plat.image) }}" alt="{{plat.name}}" style="height:200px;">
   <div class="card-body">
     <h5 class="card-title">{{plat.name}} | {{plat.price}}€</h5>
@@ -23,7 +21,7 @@
     
     </p>
     <div class="d-flex justify-content-around">
-        <a href="{{ path('plat_edit', {'id': plat.id}) }}" class="btn btn-primary">Editer</a>
+        <a href="{{ path('plat_edit', {'id': plat.id}) }}" class="btn btn-outline-warning">Editer</a>
         {{ include('plat/_delete_form.html.twig') }}
      </div>
   </div>

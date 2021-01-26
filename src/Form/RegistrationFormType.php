@@ -18,8 +18,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
-    const user = 'USER_ROLE';
-    const resto = 'USER_RESTAURANT';
+    const user = 'ROLE_USER';
+    const resto = 'ROLE_RESTAURANT';
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
