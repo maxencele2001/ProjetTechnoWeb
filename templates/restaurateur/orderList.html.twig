@@ -19,9 +19,11 @@
         <div class="col-12">
 
             <div class="col-12">
-                <h1>{{ title }}</h1>
+                <h1>Historique des commande</h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ path('admin.dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.dashboard') }}">Tableau de bord</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.restaurant.all') }}">Liste de mes Restaurants</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('restaurateur.restaurant.one', {id: restaurant.id}) }}">Details</a></li>
                     <li class="breadcrumb-item active">Historique de commande</li>
                 </ol>
             </div>
@@ -38,16 +40,34 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="col-12">
+                {% else %}
                 <div class="cart shadow p-3 mb-5 bg-white rounded">
                     <div class="cart-content p-4">
-                    {{empty}}
+                    Aucune commande en cours
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+
+                <h2>Commande livrée</h2>
+                {% for order in orderLivre %}
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
+                    <div class="cart-content p-4">
+                        <div class="d-flex justify-content-around">
+                            <div class="id">#{{ order.id }}</div>
+                            <div class="date"><b>Date :</b> {{ order.orderedAt | date('Y-m-d H:i:s') }}</div>
+                            <div class="user"><b>User :</b> {{ order.user.name }} {{ order.user.firstName }}</div>
+                            <div class="price"><b>Prix Total :</b> {{ order.priceTotal}}€</div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="cart shadow p-3 mb-5 bg-white rounded">
+                    <div class="cart-content p-4">
+                    Aucune commande livrée
+                    </div>
+                </div>
+                {% endfor %}
+            </div>         
     
             
 
