@@ -16,16 +16,18 @@ use App\Entity\User;
 use App\Form\UserFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PlatRepository;
 class DashboardController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin.dashboard", methods={"GET"})
      */
-    public function adminDashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo, TypeRepository $typeRepo)
+    public function adminDashboard(RestaurantRepository $repo, OrderRepository $orderRepo, UserRepository $userRepo, TypeRepository $typeRepo, PlatRepository $platRepository)
     {
         $types = $typeRepo->findAll();
         $restaurants = $repo->findAll();
         $users = $userRepo->findAll();
+        $plats = $platRepository->findAll();
         $restaurateur = $userRepo->find($this->getUser()); // session admin
         $orderEncours = [];
         $orderLivre = [];
@@ -47,6 +49,7 @@ class DashboardController extends AbstractController
             'restaurants' => $restaurants,
             'users' => $users,
             'types' => $types,
+            'plats' => $plats,
             'orderEncours' => $orderEncours,
             'orderLivre' => $orderLivre,
             'restaurateur' => $restaurateur //admin

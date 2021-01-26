@@ -19,7 +19,7 @@ thead {
 a {
   color:white;
 }
-button {
+.btn {
   background-color: rgb(252,163,17);
-  
+  color:white;  
 }
