@@ -30,6 +30,15 @@ class RestaurantRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function getByName(Restaurant $name)
+    {
+        return $this->createQueryBuilder('r')
+        ->where('r.name = :name')
+        ->setParameter('name', $name)
+        ->getQuery()
+        ->getResult();
+    }
+    
     public function getByIdUser(User $user)
     {
         return $this->createQueryBuilder('r')
@@ -49,6 +58,9 @@ class RestaurantRepository extends ServiceEntityRepository
     return $qb->getQuery()->getResult();
     
   }
+
+  
+
   
     // /**
     //  * @return Restaurant[] Returns an array of Restaurant objects
